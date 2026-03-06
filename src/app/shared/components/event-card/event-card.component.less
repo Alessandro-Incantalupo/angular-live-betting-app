@@ -1,19 +1,21 @@
-@import '../../../../../src/styles/variables.less';
+@import "@styles/variables.less";
 
 :host {
   background: @color-white;
-  border-radius: 8px;
-  padding: 1.25rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: @radius-md;
+  padding: @space-5;
+  box-shadow: @shadow-sm;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: @space-3;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: @shadow-hover;
 
     .event-title {
       color: @color-accent-blue;
@@ -23,10 +25,10 @@
 
 .event-badge {
   align-self: flex-start;
-  background: #eef2f5;
+  background: @color-box-bg;
   color: @color-text-secondary;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
+  padding: @space-1 @space-2;
+  border-radius: @radius-sm;
   font-size: 0.7rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -44,7 +46,7 @@
 
 .odds-row {
   display: flex;
-  gap: 0.5rem;
+  gap: @space-2;
   margin-top: auto;
 }
 
@@ -57,7 +59,7 @@
   background: @color-box-bg;
   border: 1px solid @color-border;
   padding: 0.4rem 0.25rem;
-  border-radius: 4px;
+  border-radius: @radius-sm;
   cursor: pointer;
   transition: all 0.15s;
 

@@ -1,4 +1,4 @@
-@import '../../../../src/styles/variables.less';
+@import "@styles/variables.less";
 
 :host {
   display: flex;
@@ -16,7 +16,7 @@
 
   h2 {
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: @space-4;
     color: @color-primary-dark;
     flex-shrink: 0;
   }
@@ -38,7 +38,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #c0cad5; /* Note: could move to variables if used multiple places */
+    background: @color-text-muted;
     border-radius: 3px;
   }
 }
@@ -46,8 +46,8 @@
 .events-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.25rem;
-  padding-bottom: 1rem;
+  gap: @space-5;
+  padding-bottom: @space-4;
 }
 
 .loading-state,
@@ -57,10 +57,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: @space-8;
   text-align: center;
   background: @color-white;
-  border-radius: 8px;
+  border-radius: @radius-md;
   color: @color-text-secondary;
   font-size: 1.1rem;
 
