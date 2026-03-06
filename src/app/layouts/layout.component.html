@@ -7,14 +7,13 @@
     <h3>Filters</h3>
 
     <div class="filter-section">
-      <span class="filter-label">Sports</span>
       <ul>
         <li>
           <button
             [class.active]="store.selectedSport() === null"
             (click)="onSportSelect(null)"
           >
-            All Sports
+            Overview
           </button>
         </li>
         @for (sport of store.availableSports(); track sport) {
@@ -25,36 +24,25 @@
             >
               {{ sport }}
             </button>
+            
+            @if (store.selectedSport() === sport && store.availableCategories().length > 0) {
+              <ul class="submenu">
+                @for (category of store.availableCategories(); track category) {
+                  <li>
+                    <button
+                      [class.active]="store.selectedCategory() === category"
+                      (click)="onCategorySelect(category)"
+                    >
+                      {{ category }}
+                    </button>
+                  </li>
+                }
+              </ul>
+            }
           </li>
         }
       </ul>
     </div>
-
-    @if (store.availableCategories().length > 0) {
-      <div class="filter-section">
-        <span class="filter-label">Categories</span>
-        <ul>
-          <li>
-            <button
-              [class.active]="store.selectedCategory() === null"
-              (click)="onCategorySelect(null)"
-            >
-              All Categories
-            </button>
-          </li>
-          @for (category of store.availableCategories(); track category) {
-            <li>
-              <button
-                [class.active]="store.selectedCategory() === category"
-                (click)="onCategorySelect(category)"
-              >
-                {{ category }}
-              </button>
-            </li>
-          }
-        </ul>
-      </div>
-    }
   </aside>
 
   <main class="app-content">

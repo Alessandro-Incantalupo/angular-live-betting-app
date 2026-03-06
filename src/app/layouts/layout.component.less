@@ -29,7 +29,7 @@
 }
 
 .sidebar {
-  width: 200px;
+  width: 260px;
   flex-shrink: 0;
   background: white;
   border-radius: 8px;
@@ -48,18 +48,6 @@
 }
 
 .filter-section {
-  margin-bottom: 1.25rem;
-
-  .filter-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #8a9ab0;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-  }
-
   ul {
     list-style: none;
     padding: 0;
@@ -73,11 +61,11 @@
         text-align: left;
         background: transparent;
         border: none;
-        padding: 0.4rem 0.75rem;
+        padding: 0.6rem 0.75rem;
         border-radius: 4px;
         cursor: pointer;
         color: #333;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         transition:
           background 0.15s,
           color 0.15s;
@@ -90,6 +78,29 @@
           background: #1a2a3a;
           color: white;
           font-weight: 500;
+        }
+      }
+
+      .submenu {
+        margin-top: 0.25rem;
+        margin-bottom: 0.5rem;
+        border-left: 2px solid #e1e8ed;
+        margin-left: 0.75rem;
+        padding-left: 0.5rem;
+
+        li {
+          margin-bottom: 0;
+
+          button {
+            padding: 0.4rem 0.75rem;
+            font-size: 0.85rem;
+
+            &.active {
+              background: #f0f4f8;
+              color: #1a2a3a;
+              font-weight: 600;
+            }
+          }
         }
       }
     }
