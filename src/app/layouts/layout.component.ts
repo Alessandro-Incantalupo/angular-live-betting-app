@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { EventsStore } from '../core/state/events.store';
 
 @Component({
@@ -16,12 +16,19 @@ import { EventsStore } from '../core/state/events.store';
 })
 export default class LayoutComponent {
   store = inject(EventsStore);
+  private router = inject(Router);
 
   onSportSelect(sport: string | null) {
     this.store.setSportFilter(sport);
+    if (this.router.url !== '/') {
+      this.router.navigate(['/']);
+    }
   }
 
   onCategorySelect(category: string | null) {
     this.store.setCategoryFilter(category);
+    if (this.router.url !== '/') {
+      this.router.navigate(['/']);
+    }
   }
 }

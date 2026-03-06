@@ -1,0 +1,84 @@
+@import '../../../../../src/styles/variables.less';
+
+:host {
+  background: @color-white;
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    .event-title {
+      color: @color-accent-blue;
+    }
+  }
+}
+
+.event-badge {
+  align-self: flex-start;
+  background: #eef2f5;
+  color: @color-text-secondary;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.event-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: @color-primary-dark;
+  line-height: 1.4;
+  transition: color 0.2s;
+}
+
+.odds-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.odd-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  background: @color-box-bg;
+  border: 1px solid @color-border;
+  padding: 0.4rem 0.25rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+
+  span {
+    font-size: 0.75rem;
+    color: @color-text-muted;
+    font-weight: 600;
+  }
+
+  strong {
+    color: @color-primary-dark;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  &:hover {
+    border-color: @color-accent-blue;
+    background: @color-hover-bg;
+
+    strong {
+      color: @color-accent-blue;
+    }
+  }
+}
