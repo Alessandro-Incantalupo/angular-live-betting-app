@@ -6,6 +6,11 @@ const events = require("./events.json");
 const app = new Koa();
 const router = new Router();
 
+app.use(async (ctx, next) => {
+  ctx.set("Access-Control-Allow-Origin", "http://localhost:4200");
+  await next();
+});
+
 const random = () => Math.floor(Math.random() * (1000 - 100) + 100) / 100;
 
 function getRandomNumber(ret) {
