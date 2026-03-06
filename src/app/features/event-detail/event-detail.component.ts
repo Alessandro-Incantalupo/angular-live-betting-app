@@ -4,8 +4,9 @@ import {
   Component,
   computed,
   inject,
+  input,
 } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { EventsStore } from '../../core/state/events.store';
 
 @Component({
@@ -15,17 +16,16 @@ import { EventsStore } from '../../core/state/events.store';
   templateUrl: './event-detail.component.html',
   styleUrls: ['./event-detail.component.less'],
   host: {
-    class: 'event-detail-container'
+    class: 'event-detail-container',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class EventDetailComponent {
-  private route = inject(ActivatedRoute);
   store = inject(EventsStore);
 
-  // We could fetch a single event from the API,
-  // but for this simple app, finding it in the loaded store events is faster and works well with the polling.
-  eventId = computed(() => Number(this.route.snapshot.paramMap.get('id')));
+  id = input.required<string>();
+
+  eventId = computed(() => Number(this.id()));
 
   event = computed(() => {
     const id = this.eventId();
