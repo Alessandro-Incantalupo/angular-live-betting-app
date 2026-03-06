@@ -10,7 +10,7 @@ import {
 } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
-import { BettingEvent } from '../models/event.model';
+import { SportEvent } from '../models/event.model';
 import { EventsService } from '../services/events.service';
 import {
   setEventsError,
@@ -20,7 +20,7 @@ import {
 } from './features/withEventsCallState';
 
 interface EventsState {
-  events: BettingEvent[];
+  events: SportEvent[];
   selectedSport: string | null;
   selectedCategory: string | null;
 }
@@ -103,7 +103,6 @@ export const EventsStore = signalStore(
     onInit(store) {
       store.loadEvents();
 
-      // Auto-polling every 15 seconds for updated odds
       setInterval(() => {
         store.loadEvents();
       }, 15000);

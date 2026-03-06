@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -10,6 +10,4 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-  title = signal('betting-hiring');
-}
+export class AppComponent {}

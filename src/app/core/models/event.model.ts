@@ -1,13 +1,16 @@
-export interface EventOdds {
-  '1': number;
-  x: number;
-  '2': number;
-}
+export type OddKey = '1' | '2' | 'x';
 
-export interface BettingEvent {
+export type Odds = Record<OddKey, number>;
+
+export interface SportEvent {
   id: number;
   sport: string;
   category: string;
   name: string;
-  odds: EventOdds;
+  odds: Odds;
+}
+
+export interface SportItem {
+  name: string;
+  categories: string[];
 }

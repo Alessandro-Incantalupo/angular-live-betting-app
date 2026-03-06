@@ -1,0 +1,63 @@
+<header class="app-header">
+  <h1>Betting Hiring Application</h1>
+</header>
+
+<div class="app-body">
+  <aside class="sidebar">
+    <h3>Filters</h3>
+
+    <div class="filter-section">
+      <span class="filter-label">Sports</span>
+      <ul>
+        <li>
+          <button
+            [class.active]="store.selectedSport() === null"
+            (click)="onSportSelect(null)"
+          >
+            All Sports
+          </button>
+        </li>
+        @for (sport of store.availableSports(); track sport) {
+          <li>
+            <button
+              [class.active]="store.selectedSport() === sport"
+              (click)="onSportSelect(sport)"
+            >
+              {{ sport }}
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
+
+    @if (store.availableCategories().length > 0) {
+      <div class="filter-section">
+        <span class="filter-label">Categories</span>
+        <ul>
+          <li>
+            <button
+              [class.active]="store.selectedCategory() === null"
+              (click)="onCategorySelect(null)"
+            >
+              All Categories
+            </button>
+          </li>
+          @for (category of store.availableCategories(); track category) {
+            <li>
+              <button
+                [class.active]="store.selectedCategory() === category"
+                (click)="onCategorySelect(category)"
+              >
+                {{ category }}
+              </button>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+  </aside>
+
+  <main class="app-content">
+    <router-outlet />
+  </main>
+</div>
