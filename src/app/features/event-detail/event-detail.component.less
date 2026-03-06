@@ -1,0 +1,140 @@
+.event-detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.breadcrumb {
+  margin-bottom: 2rem;
+
+  .back-link {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.event-content {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.header-section {
+  padding: 2rem;
+  background: #1a2a3a;
+  color: white;
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    .tag {
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+
+      &.sport {
+        background: #3b82f6;
+        color: white;
+      }
+
+      &.category {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+      }
+    }
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .event-id {
+    color: #94a3b8;
+    margin: 0;
+    font-size: 0.875rem;
+  }
+}
+
+.odds-section {
+  padding: 2rem;
+
+  h3 {
+    margin: 0 0 0.5rem 0;
+    color: #1a2a3a;
+  }
+
+  .polling-note {
+    color: #5c6a79;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.odds-display {
+  display: flex;
+  gap: 1.5rem;
+
+  // Responsive break
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.odd-box {
+  flex: 1;
+  background: #f8fafd;
+  border: 2px solid #e1e8ed;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: #3b82f6;
+  }
+
+  .label {
+    color: #5c6a79;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  .value {
+    color: #1a2a3a;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+}
+
+.loading-state,
+.error-state,
+.empty-state {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: white;
+  border-radius: 12px;
+  color: #5c6a79;
+  font-size: 1.1rem;
+}
+
+.error-state {
+  color: #dc2626;
+  background: #fef2f2;
+}
