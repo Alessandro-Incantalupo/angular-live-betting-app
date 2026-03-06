@@ -1,0 +1,18 @@
+<span class="event-badge">{{ event().sport }} - {{ event().category }}</span>
+
+<h3 class="event-title">{{ event().name }}</h3>
+
+<div class="odds-row">
+  <button class="odd-btn">
+    <span>1</span>
+    <strong>{{ event().odds["1"] | number: "1.2-2" }}</strong>
+  </button>
+  <button class="odd-btn">
+    <span>X</span>
+    <strong>{{ event().odds["x"] | number: "1.2-2" }}</strong>
+  </button>
+  <button class="odd-btn">
+    <span>2</span>
+    <strong>{{ event().odds["2"] | number: "1.2-2" }}</strong>
+  </button>
+</div>

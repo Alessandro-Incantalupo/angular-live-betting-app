@@ -1,46 +1,51 @@
-<div class="breadcrumb">
-  <a routerLink="/" class="back-link">&larr; Back to Events</a>
-</div>
+<header class="app-header">
+  <div class="header-content">
+    <a routerLink="/" class="back-link">&larr; Back to Events</a>
+    <h1>Betting Hiring Application</h1>
+  </div>
+</header>
 
-@if (store.eventsLoading()) {
-  <p class="loading-state">Loading event details...</p>
-} @else if (store.eventsError()) {
-  <p class="error-state">Error: {{ store.eventsError() }}</p>
-} @else {
-  @if (event(); as e) {
-    <div class="event-content">
-      <div class="header-section">
-        <div class="tags">
-          <span class="tag sport">{{ e.sport }}</span>
-          <span class="tag category">{{ e.category }}</span>
-        </div>
-        <h2>{{ e.name }}</h2>
-        <p class="event-id">Match ID: {{ e.id }}</p>
-      </div>
-
-      <div class="odds-section">
-        <h3>Live Match Odds</h3>
-        <p class="polling-note">
-          Odds update automatically every 15 seconds.
-        </p>
-
-        <div class="odds-display">
-          <div class="odd-box">
-            <span class="label">Home Win (1)</span>
-            <span class="value">{{ e.odds["1"] | number: "1.2-2" }}</span>
-          </div>
-          <div class="odd-box">
-            <span class="label">Draw (X)</span>
-            <span class="value">{{ e.odds["x"] | number: "1.2-2" }}</span>
-          </div>
-          <div class="odd-box">
-            <span class="label">Away Win (2)</span>
-            <span class="value">{{ e.odds["2"] | number: "1.2-2" }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="detail-body">
+  @if (store.eventsLoading()) {
+    <p class="loading-state">Loading event details...</p>
+  } @else if (store.eventsError()) {
+    <p class="error-state">Error: {{ store.eventsError() }}</p>
   } @else {
-    <p class="empty-state">Event not found.</p>
+    @if (event(); as e) {
+      <div class="event-content">
+        <div class="header-section">
+          <div class="tags">
+            <span class="tag sport">{{ e.sport }}</span>
+            <span class="tag category">{{ e.category }}</span>
+          </div>
+          <h2>{{ e.name }}</h2>
+          <p class="event-id">Match ID: {{ e.id }}</p>
+        </div>
+
+        <div class="odds-section">
+          <h3>Live Match Odds</h3>
+          <p class="polling-note">
+            Odds update automatically every 15 seconds.
+          </p>
+
+          <div class="odds-display">
+            <div class="odd-box">
+              <span class="label">Home Win (1)</span>
+              <span class="value">{{ e.odds["1"] | number: "1.2-2" }}</span>
+            </div>
+            <div class="odd-box">
+              <span class="label">Draw (X)</span>
+              <span class="value">{{ e.odds["x"] | number: "1.2-2" }}</span>
+            </div>
+            <div class="odd-box">
+              <span class="label">Away Win (2)</span>
+              <span class="value">{{ e.odds["2"] | number: "1.2-2" }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <p class="empty-state">Event not found.</p>
+    }
   }
-}
+</div>

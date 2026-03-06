@@ -18,28 +18,7 @@
       } @else {
         <div class="events-grid">
           @for (event of store.filteredEvents(); track event.id) {
-            <div class="event-card">
-              <span class="event-badge"
-                >{{ event.sport }} - {{ event.category }}</span
-              >
-              <a [routerLink]="['/event', event.id]" class="event-title">{{
-                event.name
-              }}</a>
-              <div class="odds-row">
-                <button class="odd-btn">
-                  <span>1</span>
-                  <strong>{{ event.odds["1"] | number: "1.2-2" }}</strong>
-                </button>
-                <button class="odd-btn">
-                  <span>X</span>
-                  <strong>{{ event.odds["x"] | number: "1.2-2" }}</strong>
-                </button>
-                <button class="odd-btn">
-                  <span>2</span>
-                  <strong>{{ event.odds["2"] | number: "1.2-2" }}</strong>
-                </button>
-              </div>
-            </div>
+            <app-event-card [event]="event"></app-event-card>
           }
         </div>
       }
