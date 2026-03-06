@@ -14,6 +14,9 @@ import { EventsStore } from '../../core/state/events.store';
   imports: [CommonModule, RouterModule],
   templateUrl: './event-detail.component.html',
   styleUrls: ['./event-detail.component.less'],
+  host: {
+    class: 'event-detail-container'
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class EventDetailComponent {

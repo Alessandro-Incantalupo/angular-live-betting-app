@@ -1,98 +1,48 @@
-<div class="home-layout">
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <h3>Filters</h3>
+<section class="events-area">
+  <h2>Available Events</h2>
 
-    <div class="filter-section">
-      <h4>Sports</h4>
-      <ul>
-        <li>
-          <button
-            [class.active]="store.selectedSport() === null"
-            (click)="onSportSelect(null)"
-          >
-            All Sports
-          </button>
-        </li>
-        @for (sport of store.availableSports(); track sport) {
-          <li>
-            <button
-              [class.active]="store.selectedSport() === sport"
-              (click)="onSportSelect(sport)"
-            >
-              {{ sport }}
-            </button>
-          </li>
-        }
-      </ul>
-    </div>
-
-    @if (store.availableCategories().length > 0) {
-      <div class="filter-section">
-        <h4>Categories</h4>
-        <ul>
-          <li>
-            <button
-              [class.active]="store.selectedCategory() === null"
-              (click)="onCategorySelect(null)"
-            >
-              All Categories
-            </button>
-          </li>
-          @for (category of store.availableCategories(); track category) {
-            <li>
-              <button
-                [class.active]="store.selectedCategory() === category"
-                (click)="onCategorySelect(category)"
-              >
-                {{ category }}
-              </button>
-            </li>
-          }
-        </ul>
-      </div>
-    }
-  </aside>
-
-  <!-- Main Content Area -->
-  <section class="events-area">
-    <h2>Available Events</h2>
-
+  <div class="events-scroll">
     @if (store.eventsLoading()) {
-      <p class="loading-state">Loading latest odds...</p>
-    } @else if (store.eventsError()) {
-      <p class="error-state">Error loading events: {{ store.eventsError() }}</p>
-    } @else {
-      <div class="events-grid">
-        @for (event of store.filteredEvents(); track event.id) {
-          <div class="event-card">
-            <span class="event-badge"
-              >{{ event.sport }} - {{ event.category }}</span
-            >
-            <a [routerLink]="['/event', event.id]" class="event-title">{{
-              event.name
-            }}</a>
-            <div class="odds-row">
-              <button class="odd-btn">
-                <span>1</span>
-                <strong>{{ event.odds["1"] | number: "1.2-2" }}</strong>
-              </button>
-              <button class="odd-btn">
-                <span>X</span>
-                <strong>{{ event.odds["x"] | number: "1.2-2" }}</strong>
-              </button>
-              <button class="odd-btn">
-                <span>2</span>
-                <strong>{{ event.odds["2"] | number: "1.2-2" }}</strong>
-              </button>
-            </div>
-          </div>
-        }
-
-        @if (store.filteredEvents().length === 0) {
-          <p class="empty-state">No events found for the selected filters.</p>
-        }
+      <div class="loading-state">
+        <p>Loading latest odds...</p>
       </div>
+    } @else if (store.eventsError()) {
+      <div class="error-state">
+        <p>Error loading events: {{ store.eventsError() }}</p>
+      </div>
+    } @else {
+      @if (store.filteredEvents().length === 0) {
+        <div class="empty-state">
+          <p>No events found for the selected filters.</p>
+        </div>
+      } @else {
+        <div class="events-grid">
+          @for (event of store.filteredEvents(); track event.id) {
+            <div class="event-card">
+              <span class="event-badge"
+                >{{ event.sport }} - {{ event.category }}</span
+              >
+              <a [routerLink]="['/event', event.id]" class="event-title">{{
+                event.name
+              }}</a>
+              <div class="odds-row">
+                <button class="odd-btn">
+                  <span>1</span>
+                  <strong>{{ event.odds["1"] | number: "1.2-2" }}</strong>
+                </button>
+                <button class="odd-btn">
+                  <span>X</span>
+                  <strong>{{ event.odds["x"] | number: "1.2-2" }}</strong>
+                </button>
+                <button class="odd-btn">
+                  <span>2</span>
+                  <strong>{{ event.odds["2"] | number: "1.2-2" }}</strong>
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      }
     }
-  </section>
-</div>
+  </div>
+</section>
