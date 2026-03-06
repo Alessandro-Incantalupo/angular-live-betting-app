@@ -1,0 +1,475 @@
+[
+  {
+    "id": 1,
+    "sport": "Football",
+    "category": "Premier League",
+    "name": "Manchester United vs Manchester City",
+    "odds": {
+      "1": 1.77,
+      "2": 5.02,
+      "x": 8.08
+    }
+  },
+  {
+    "id": 2,
+    "sport": "Football",
+    "category": "La Liga",
+    "name": "Real Madrid vs Barcelona",
+    "odds": {
+      "1": 7.56,
+      "2": 7.07,
+      "x": 9.2
+    }
+  },
+  {
+    "id": 3,
+    "sport": "Basketball",
+    "category": "NBA",
+    "name": "Warriors vs Lakers",
+    "odds": {
+      "1": 2.36,
+      "2": 7.64,
+      "x": 7.92
+    }
+  },
+  {
+    "id": 4,
+    "sport": "Basketball",
+    "category": "EuroLeague",
+    "name": "CSKA Moscow vs Fenerbahce",
+    "odds": {
+      "1": 6.23,
+      "2": 1.13,
+      "x": 8.95
+    }
+  },
+  {
+    "id": 5,
+    "sport": "Tennis",
+    "category": "Grand Slam",
+    "name": "Djokovic vs Nadal",
+    "odds": {
+      "1": 3.64,
+      "2": 2.81,
+      "x": 2.9
+    }
+  },
+  {
+    "id": 6,
+    "sport": "Tennis",
+    "category": "ATP Tour",
+    "name": "Federer vs Murray",
+    "odds": {
+      "1": 1.05,
+      "2": 9.6,
+      "x": 8.16
+    }
+  },
+  {
+    "id": 7,
+    "sport": "Cricket",
+    "category": "Test Match",
+    "name": "Australia vs England",
+    "odds": {
+      "1": 7.65,
+      "2": 5.49,
+      "x": 9.13
+    }
+  },
+  {
+    "id": 8,
+    "sport": "Cricket",
+    "category": "ODI",
+    "name": "India vs Pakistan",
+    "odds": {
+      "1": 8.48,
+      "2": 3.84,
+      "x": 9.85
+    }
+  },
+  {
+    "id": 9,
+    "sport": "Golf",
+    "category": "PGA Tour",
+    "name": "Tiger Woods vs Rory McIlroy",
+    "odds": {
+      "1": 5.17,
+      "2": 5.5,
+      "x": 3.15
+    }
+  },
+  {
+    "id": 10,
+    "sport": "Golf",
+    "category": "Masters Tournament",
+    "name": "Brooks Koepka vs Dustin Johnson",
+    "odds": {
+      "1": 8.51,
+      "2": 5.15,
+      "x": 6.98
+    }
+  },
+  {
+    "id": 11,
+    "sport": "Football",
+    "category": "Bundesliga",
+    "name": "Bayern Munich vs Borussia Dortmund",
+    "odds": {
+      "1": 1.89,
+      "2": 9.14,
+      "x": 1.41
+    }
+  },
+  {
+    "id": 12,
+    "sport": "Football",
+    "category": "Serie A",
+    "name": "Inter Milan vs Juventus",
+    "odds": {
+      "1": 3.19,
+      "2": 1.66,
+      "x": 5.85
+    }
+  },
+  {
+    "id": 13,
+    "sport": "Basketball",
+    "category": "EuroCup",
+    "name": "Maccabi Tel Aviv vs Real Madrid",
+    "odds": {
+      "1": 6.98,
+      "2": 8.3,
+      "x": 9.18
+    }
+  },
+  {
+    "id": 14,
+    "sport": "Basketball",
+    "category": "NCAA",
+    "name": "Duke vs North Carolina",
+    "odds": {
+      "1": 2.3,
+      "2": 2.24,
+      "x": 3.67
+    }
+  },
+  {
+    "id": 15,
+    "sport": "Football",
+    "category": "Bundesliga",
+    "name": "RB Leipzig vs Borussia Monchengladbach",
+    "odds": {
+      "1": 2.15,
+      "2": 3.98,
+      "x": 4.75
+    }
+  },
+  {
+    "id": 16,
+    "sport": "Basketball",
+    "category": "NBA",
+    "name": "Celtics vs 76ers",
+    "odds": {
+      "1": 1.95,
+      "2": 2.12,
+      "x": 3.45
+    }
+  },
+  {
+    "id": 17,
+    "sport": "Tennis",
+    "category": "Wimbledon",
+    "name": "Serena Williams vs Maria Sharapova",
+    "odds": {
+      "1": 1.95,
+      "2": 3.12,
+      "x": 4.78
+    }
+  },
+  {
+    "id": 18,
+    "sport": "Golf",
+    "category": "The Open Championship",
+    "name": "Jordan Spieth vs Justin Thomas",
+    "odds": {
+      "1": 2.85,
+      "2": 2.98,
+      "x": 3.55
+    }
+  },
+  {
+    "id": 19,
+    "sport": "Cricket",
+    "category": "Twenty20",
+    "name": "Pakistan vs Australia",
+    "odds": {
+      "1": 4.21,
+      "2": 1.89,
+      "x": 5.12
+    }
+  },
+  {
+    "id": 20,
+    "sport": "Football",
+    "category": "Serie A",
+    "name": "AC Milan vs Napoli",
+    "odds": {
+      "1": 2.34,
+      "2": 2.78,
+      "x": 3.98
+    }
+  },
+  {
+    "id": 21,
+    "sport": "Basketball",
+    "category": "WNBA",
+    "name": "Seattle Storm vs Las Vegas Aces",
+    "odds": {
+      "1": 1.78,
+      "2": 2.15,
+      "x": 3.67
+    }
+  },
+  {
+    "id": 22,
+    "sport": "Football",
+    "category": "Serie A",
+    "name": "AC Milan vs Napoli",
+    "odds": {
+      "1": 2.34,
+      "2": 2.78,
+      "x": 3.98
+    }
+  },
+  {
+    "id": 23,
+    "sport": "Basketball",
+    "category": "WNBA",
+    "name": "Seattle Storm vs Las Vegas Aces",
+    "odds": {
+      "1": 1.78,
+      "2": 2.15,
+      "x": 3.67
+    }
+  },
+  {
+    "id": 24,
+    "sport": "Tennis",
+    "category": "Wimbledon",
+    "name": "Serena Williams vs Maria Sharapova",
+    "odds": {
+      "1": 1.95,
+      "2": 3.12,
+      "x": 4.78
+    }
+  },
+  {
+    "id": 25,
+    "sport": "Golf",
+    "category": "The Open Championship",
+    "name": "Jordan Spieth vs Justin Thomas",
+    "odds": {
+      "1": 2.85,
+      "2": 2.98,
+      "x": 3.55
+    }
+  },
+  {
+    "id": 26,
+    "sport": "Cricket",
+    "category": "Twenty20",
+    "name": "Pakistan vs Australia",
+    "odds": {
+      "1": 4.21,
+      "2": 1.89,
+      "x": 5.12
+    }
+  },
+  {
+    "id": 27,
+    "sport": "Football",
+    "category": "Serie A",
+    "name": "AS Roma vs Lazio",
+    "odds": {
+      "1": 2.12,
+      "2": 2.98,
+      "x": 3.45
+    }
+  },
+  {
+    "id": 28,
+    "sport": "Basketball",
+    "category": "EuroLeague",
+    "name": "Anadolu Efes vs Real Madrid",
+    "odds": {
+      "1": 3.78,
+      "2": 1.92,
+      "x": 4.21
+    }
+  },
+  {
+    "id": 29,
+    "sport": "Tennis",
+    "category": "Australian Open",
+    "name": "Ashleigh Barty vs Naomi Osaka",
+    "odds": {
+      "1": 2.68,
+      "2": 2.15,
+      "x": 3.89
+    }
+  },
+  {
+    "id": 30,
+    "sport": "Football",
+    "category": "Ligue 1",
+    "name": "Paris Saint-Germain vs Olympique Marseille",
+    "odds": {
+      "1": 1.98,
+      "2": 4.12,
+      "x": 3.75
+    }
+  },
+  {
+    "id": 31,
+    "sport": "Basketball",
+    "category": "NCAA",
+    "name": "Kentucky vs Duke",
+    "odds": {
+      "1": 2.24,
+      "2": 2.18,
+      "x": 3.89
+    }
+  },
+  {
+    "id": 32,
+    "sport": "Tennis",
+    "category": "French Open",
+    "name": "Simona Halep vs Garbine Muguruza",
+    "odds": {
+      "1": 2.78,
+      "2": 2.95,
+      "x": 4.01
+    }
+  },
+  {
+    "id": 33,
+    "sport": "Football",
+    "category": "Eredivisie",
+    "name": "Ajax vs PSV Eindhoven",
+    "odds": {
+      "1": 1.98,
+      "2": 3.45,
+      "x": 4.12
+    }
+  },
+  {
+    "id": 34,
+    "sport": "Basketball",
+    "category": "EuroLeague",
+    "name": "Olympiacos vs Panathinaikos",
+    "odds": {
+      "1": 2.15,
+      "2": 2.78,
+      "x": 3.21
+    }
+  },
+  {
+    "id": 35,
+    "sport": "Tennis",
+    "category": "Australian Open",
+    "name": "Novak Djokovic vs Roger Federer",
+    "odds": {
+      "1": 1.89,
+      "2": 2.45,
+      "x": 3.78
+    }
+  },
+  {
+    "id": 38,
+    "sport": "Football",
+    "category": "Ligue 1",
+    "name": "Paris Saint-Germain vs Olympique Marseille",
+    "odds": {
+      "1": 1.98,
+      "2": 4.12,
+      "x": 3.75
+    }
+  },
+  {
+    "id": 36,
+    "sport": "Football",
+    "category": "Ligue 1",
+    "name": "Paris Saint-Germain vs Olympique Marseille",
+    "odds": {
+      "1": 1.98,
+      "2": 3.45,
+      "x": 4.12
+    }
+  },
+  {
+    "id": 37,
+    "sport": "Basketball",
+    "category": "EuroLeague",
+    "name": "Olympiacos vs Panathinaikos",
+    "odds": {
+      "1": 2.15,
+      "2": 2.78,
+      "x": 3.21
+    }
+  },
+  {
+    "id": 39,
+    "sport": "Basketball",
+    "category": "EuroLeague",
+    "name": "Olympiacos vs Panathinaikos",
+    "odds": {
+      "1": 2.15,
+      "2": 2.78,
+      "x": 3.21
+    }
+  },
+  {
+    "id": 40,
+    "sport": "Tennis",
+    "category": "French Open",
+    "name": "Simona Halep vs Garbine Muguruza",
+    "odds": {
+      "1": 2.78,
+      "2": 2.95,
+      "x": 4.01
+    }
+  },
+  {
+    "id": 41,
+    "sport": "Football",
+    "category": "Ligue 1",
+    "name": "Paris Saint-Germain vs Olympique Marseille",
+    "odds": {
+      "1": 1.98,
+      "2": 3.45,
+      "x": 4.12
+    }
+  },
+  {
+    "id": 42,
+    "sport": "Basketball",
+    "category": "EuroLeague",
+    "name": "Olympiacos vs Panathinaikos",
+    "odds": {
+      "1": 2.15,
+      "2": 2.78,
+      "x": 3.21
+    }
+  },
+  {
+    "id": 43,
+    "sport": "Tennis",
+    "category": "French Open",
+    "name": "Simona Halep vs Garbine Muguruza",
+    "odds": {
+      "1": 2.78,
+      "2": 2.95,
+      "x": 4.01
+    }
+  }
+]
