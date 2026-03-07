@@ -1,18 +1,28 @@
-<span class="event-badge">{{ event().sport }} - {{ event().category }}</span>
+<span class="event-badge" aria-label="Category"
+  >{{ event().sport }} - {{ event().category }}</span
+>
 
-<h3 class="event-title">{{ event().name }}</h3>
+<h3 class="event-title" [attr.aria-label]="'Match: ' + event().name">
+  {{ event().name }}
+</h3>
 
-<div class="odds-row">
-  <button class="odd-btn">
-    <span>1</span>
-    <strong>{{ event().odds["1"] | number: "1.2-2" }}</strong>
-  </button>
-  <button class="odd-btn">
-    <span>X</span>
-    <strong>{{ event().odds["x"] | number: "1.2-2" }}</strong>
-  </button>
-  <button class="odd-btn">
-    <span>2</span>
-    <strong>{{ event().odds["2"] | number: "1.2-2" }}</strong>
-  </button>
+<div class="odds-row" role="group" aria-label="Betting Odds">
+  <div class="odd-btn" [attr.aria-label]="'Home win at ' + event().odds['1']">
+    <span aria-hidden="true">1</span>
+    <strong aria-hidden="true">{{
+      event().odds["1"] | number: "1.2-2"
+    }}</strong>
+  </div>
+  <div class="odd-btn" [attr.aria-label]="'Draw at ' + event().odds['x']">
+    <span aria-hidden="true">X</span>
+    <strong aria-hidden="true">{{
+      event().odds["x"] | number: "1.2-2"
+    }}</strong>
+  </div>
+  <div class="odd-btn" [attr.aria-label]="'Away win at ' + event().odds['2']">
+    <span aria-hidden="true">2</span>
+    <strong aria-hidden="true">{{
+      event().odds["2"] | number: "1.2-2"
+    }}</strong>
+  </div>
 </div>

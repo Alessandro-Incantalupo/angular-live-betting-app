@@ -16,7 +16,11 @@ import { SportEvent } from '../../../core/models/event.model';
   styleUrls: ['./event-card.component.less'],
   host: {
     class: 'event-card',
+    role: 'button',
+    tabindex: '0',
     '(click)': 'onCardClick()',
+    '(keydown.enter)': 'onCardClick()',
+    '(keydown.space)': 'onCardClick($event)',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -25,7 +29,11 @@ export class EventCardComponent {
 
   private router = inject(Router);
 
-  onCardClick() {
+  onCardClick(event?: Event) {
+    if (event) {
+      // Prevent default scrolling down when hitting spacebar
+      event.preventDefault();
+    }
     this.router.navigate(['/event', this.event().id]);
   }
 }

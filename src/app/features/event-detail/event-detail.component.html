@@ -1,48 +1,72 @@
 <div class="detail-body">
-  <div class="navigation-bar">
-    <a routerLink="/" class="back-link">&larr; Back to Events</a>
-  </div>
+  <nav class="navigation-bar" aria-label="Back navigation">
+    <a routerLink="/" class="back-link" aria-label="Back to Events List"
+      >&larr; Back to Events</a
+    >
+  </nav>
 
   @if (store.eventsLoading()) {
-    <p class="loading-state">Loading event details...</p>
+    <p class="loading-state" role="status" aria-live="polite">
+      Loading event details...
+    </p>
   } @else if (store.eventsError()) {
-    <p class="error-state">Error: {{ store.eventsError() }}</p>
+    <p class="error-state" role="alert">Error: {{ store.eventsError() }}</p>
   } @else {
     @if (event(); as e) {
-      <div class="event-content">
-        <div class="header-section">
-          <div class="tags">
+      <article class="event-content">
+        <header class="header-section">
+          <div class="tags" aria-label="Event Categories">
             <span class="tag sport">{{ e.sport }}</span>
             <span class="tag category">{{ e.category }}</span>
           </div>
-          <h2>{{ e.name }}</h2>
-          <p class="event-id">Match ID: {{ e.id }}</p>
-        </div>
+          <h2 id="event-title">{{ e.name }}</h2>
+          <p class="event-id" aria-label="Match Identifier">
+            Match ID: {{ e.id }}
+          </p>
+        </header>
 
-        <div class="odds-section">
-          <h3>Live Match Odds</h3>
-          <p class="polling-note">
+        <section class="odds-section" aria-labelledby="odds-title">
+          <h3 id="odds-title">Live Match Odds</h3>
+          <p class="polling-note" aria-live="polite">
             Odds update automatically every 15 seconds.
           </p>
 
-          <div class="odds-display">
-            <div class="odd-box">
-              <span class="label">Home Win (1)</span>
-              <span class="value">{{ e.odds["1"] | number: "1.2-2" }}</span>
+          <div class="odds-display" role="group" aria-label="Match Odds">
+            <div
+              class="odd-box"
+              tabindex="0"
+              [attr.aria-label]="'Home Win at ' + e.odds['1']"
+            >
+              <span class="label" aria-hidden="true">Home Win (1)</span>
+              <span class="value" aria-hidden="true">{{
+                e.odds["1"] | number: "1.2-2"
+              }}</span>
             </div>
-            <div class="odd-box">
-              <span class="label">Draw (X)</span>
-              <span class="value">{{ e.odds["x"] | number: "1.2-2" }}</span>
+            <div
+              class="odd-box"
+              tabindex="0"
+              [attr.aria-label]="'Draw at ' + e.odds['x']"
+            >
+              <span class="label" aria-hidden="true">Draw (X)</span>
+              <span class="value" aria-hidden="true">{{
+                e.odds["x"] | number: "1.2-2"
+              }}</span>
             </div>
-            <div class="odd-box">
-              <span class="label">Away Win (2)</span>
-              <span class="value">{{ e.odds["2"] | number: "1.2-2" }}</span>
+            <div
+              class="odd-box"
+              tabindex="0"
+              [attr.aria-label]="'Away Win at ' + e.odds['2']"
+            >
+              <span class="label" aria-hidden="true">Away Win (2)</span>
+              <span class="value" aria-hidden="true">{{
+                e.odds["2"] | number: "1.2-2"
+              }}</span>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </article>
     } @else {
-      <p class="empty-state">Event not found.</p>
+      <p class="empty-state" role="status">Event not found.</p>
     }
   }
 </div>
