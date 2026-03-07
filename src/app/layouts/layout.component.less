@@ -1,12 +1,5 @@
 @import "@styles/variables.less";
 
-:host {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  background-color: @color-bg-light;
-}
-
 .app-header {
   background-color: @color-primary-dark;
   color: @color-white;
@@ -50,7 +43,7 @@
     overflow-y: visible;
   }
 
-  h3 {
+  h2 {
     margin-top: 0;
     margin-bottom: @space-5;
     color: @color-primary-dark;
@@ -66,10 +59,33 @@
     padding: 0;
     margin: 0;
 
+    .error-notice,
+    .loading-notice {
+      margin-top: @space-3;
+      padding: @space-3;
+      font-size: 0.85rem;
+      border-radius: @radius-sm;
+      text-align: center;
+    }
+
+    .error-notice {
+      background: @color-error-bg;
+      color: @color-error;
+      border: 1px solid fade(@color-error, 20%);
+    }
+
+    .loading-notice {
+      background: @color-hover-bg;
+      color: @color-text-secondary;
+    }
+
     li {
       margin-bottom: @space-1;
 
-      button {
+      a {
+        display: block;
+        text-decoration: none;
+        box-sizing: border-box;
         width: 100%;
         text-align: left;
         background: transparent;
@@ -77,7 +93,7 @@
         padding: @space-3 @space-3;
         border-radius: @radius-sm;
         cursor: pointer;
-        color: @color-text-main;
+        color: darken(@color-text-main, 10%); // Improved contrast
         font-size: 0.95rem;
         transition:
           background 0.15s,
@@ -104,7 +120,7 @@
         li {
           margin-bottom: 0;
 
-          button {
+          a {
             padding: @space-2 @space-3;
             font-size: 0.85rem;
 

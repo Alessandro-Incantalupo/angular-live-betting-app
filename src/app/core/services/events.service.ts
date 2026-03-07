@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
 import { SportEvent } from '../models/event.model';
 
 @Injectable({
@@ -10,18 +9,19 @@ export class EventsService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:3000';
 
-  /**
-   * Fetches all events from the mock server.
-   * Note: The mock server randomly changes the odds on every request.
-   */
-  getEvents(): Observable<SportEvent[]> {
+  getEvents() {
+    // forced error to test the Error state UI:
+    // return throwError(() => new Error('Simulated Backend Error')).pipe(
+    //   delay(3000),
+    // );
+    // Artificial 3-second delay:
+    // return this.http
+    //   .get<SportEvent[]>(`${this.apiUrl}/events`)
+    //   .pipe(delay(3000));
     return this.http.get<SportEvent[]>(`${this.apiUrl}/events`);
   }
 
-  /**
-   * Fetches a single event by ID.
-   */
-  getEventById(id: number): Observable<SportEvent> {
+  getEventById(id: number) {
     return this.http.get<SportEvent>(`${this.apiUrl}/event/${id}`);
   }
 }

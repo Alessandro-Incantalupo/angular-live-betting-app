@@ -8,6 +8,9 @@ import { RouterOutlet } from '@angular/router';
   imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less',
+  host: {
+    style: 'display: block; height: 100%;',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

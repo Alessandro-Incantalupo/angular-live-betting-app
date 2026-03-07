@@ -18,7 +18,14 @@
       } @else {
         <div class="events-grid">
           @for (event of store.filteredEvents(); track event.id) {
-            <app-event-card [event]="event"></app-event-card>
+            @defer (on viewport) {
+              <app-event-card [event]="event"></app-event-card>
+            } @placeholder {
+              <div class="event-skeleton">
+                <div class="skeleton-header"></div>
+                <div class="skeleton-body"></div>
+              </div>
+            }
           }
         </div>
       }

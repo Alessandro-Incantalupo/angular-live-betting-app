@@ -4,42 +4,60 @@
 
 <div class="app-body">
   <aside class="sidebar">
-    <h3>Filters</h3>
+    <h2>Filters</h2>
 
     <div class="filter-section">
       <ul>
         <li>
-          <button
-            [class.active]="store.selectedSport() === null"
-            (click)="onSportSelect(null)"
-          >
+          <a routerLink="/" [class.active]="store.selectedSport() === null">
             Overview
-          </button>
+          </a>
         </li>
-        @for (sport of store.availableSports(); track sport) {
-          <li>
-            <button
-              [class.active]="store.selectedSport() === sport"
-              (click)="onSportSelect(sport)"
+
+        @if (store.eventsError() !== null) {
+          <li class="error-notice">
+            <span class="warning-text"
+              >⚠️ Could not load sports. Please check server.</span
             >
-              {{ sport }}
-            </button>
-            
-            @if (store.selectedSport() === sport && store.availableCategories().length > 0) {
-              <ul class="submenu">
-                @for (category of store.availableCategories(); track category) {
-                  <li>
-                    <button
-                      [class.active]="store.selectedCategory() === category"
-                      (click)="onCategorySelect(category)"
-                    >
-                      {{ category }}
-                    </button>
-                  </li>
-                }
-              </ul>
-            }
           </li>
+        } @else if (
+          store.eventsLoading() && store.availableSports().length === 0
+        ) {
+          <li class="loading-notice">
+            <span class="loading-text">Loading sports...</span>
+          </li>
+        } @else {
+          @for (sport of store.availableSports(); track sport) {
+            <li>
+              <a
+                [routerLink]="['/sport', sport]"
+                [class.active]="store.selectedSport() === sport"
+              >
+                {{ sport }}
+              </a>
+
+              @if (
+                store.selectedSport() === sport &&
+                store.availableCategories().length > 0
+              ) {
+                <ul class="submenu">
+                  @for (
+                    category of store.availableCategories();
+                    track category
+                  ) {
+                    <li>
+                      <a
+                        [routerLink]="['/sport', sport, 'category', category]"
+                        [class.active]="store.selectedCategory() === category"
+                      >
+                        {{ category }}
+                      </a>
+                    </li>
+                  }
+                </ul>
+              }
+            </li>
+          }
         }
       </ul>
     </div>

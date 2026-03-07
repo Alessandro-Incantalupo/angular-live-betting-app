@@ -19,6 +19,8 @@ import {
   withEventsCallState,
 } from './features/withEventsCallState';
 
+import { withDevtools } from '@angular-architects/ngrx-toolkit';
+
 interface EventsState {
   events: SportEvent[];
   selectedSport: string | null;
@@ -33,6 +35,7 @@ const initialState: EventsState = {
 
 export const EventsStore = signalStore(
   { providedIn: 'root' },
+  withDevtools('EventsStore'),
   withState(initialState),
   withEventsCallState(),
   withComputed((state) => ({
@@ -61,37 +64,41 @@ export const EventsStore = signalStore(
     }),
   })),
   withMethods((state, eventsService = inject(EventsService)) => ({
-    setSportFilter(sport: string | null) {
-      updateState(state, 'Filter: Selected Sport', {
-        selectedSport: sport,
-        selectedCategory: null,
-      });
-    },
-    setCategoryFilter(category: string | null) {
-      updateState(state, 'Filter: Selected Category', {
-        selectedCategory: category,
-      });
-    },
-    clearFilters() {
-      updateState(state, 'Filter: Clear All', {
-        selectedSport: null,
-        selectedCategory: null,
-      });
-    },
+    syncRouteParams: rxMethod<{
+      sport: string | undefined;
+      category: string | undefined;
+    }>(
+      pipe(
+        tap(({ sport, category }) => {
+          updateState(state, 'Filter: Sync Routes', {
+            selectedSport: sport ?? null,
+            selectedCategory: category ?? null,
+          });
+        }),
+      ),
+    ),
 
     loadEvents: rxMethod<void>(
       pipe(
-        tap(() => setEventsLoading()),
+        tap(() => updateState(state, 'Events: Loading', setEventsLoading())),
         switchMap(() => {
           return eventsService.getEvents().pipe(
             tapResponse({
               next: (events) => {
-                updateState(state, 'Events: Load Success', { events });
-                setEventsLoaded();
+                updateState(
+                  state,
+                  'Events: Load Success',
+                  { events },
+                  setEventsLoaded(),
+                );
               },
               error: (err: { message?: string }) => {
                 console.error('Failed to load events', err);
-                setEventsError('Failed to load events');
+                updateState(
+                  state,
+                  'Events: Load Error',
+                  setEventsError('Failed to load events'),
+                );
               },
             }),
           );
