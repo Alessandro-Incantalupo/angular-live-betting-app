@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { EventsStore } from '../core/state/events.store';
 
@@ -13,9 +18,25 @@ import { EventsStore } from '../core/state/events.store';
     class: 'layout-container',
     style:
       'display: flex; flex-direction: column; height: 100vh; background-color: #f4f7f6;',
+    '(click)': 'closeMobileMenu()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class LayoutComponent {
   store = inject(EventsStore);
+
+  isMobileMenuOpen = signal(false);
+
+  toggleMobileMenu(event?: Event) {
+    if (event) {
+      event.stopPropagation();
+    }
+    this.isMobileMenuOpen.update((v) => !v);
+  }
+
+  closeMobileMenu() {
+    if (this.isMobileMenuOpen()) {
+      this.isMobileMenuOpen.set(false);
+    }
+  }
 }
