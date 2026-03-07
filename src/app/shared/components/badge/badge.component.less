@@ -1,0 +1,37 @@
+@import "@styles/variables.less";
+
+:host {
+  display: inline-flex;
+  align-items: center;
+  padding: @space-1 @space-3;
+  border-radius: @radius-full;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+
+  &.sport {
+    background: @color-primary-dark;
+    color: @color-white;
+
+    &.inverse {
+      background: @color-accent-blue;
+    }
+  }
+
+  &.category {
+    background: @color-accent-blue;
+    color: @color-white;
+
+    &.inverse {
+      background: @color-white-transparent;
+    }
+  }
+
+  &.default {
+    background: @color-box-bg;
+    color: @color-text-secondary;
+    border: 1px solid @color-border;
+  }
+}

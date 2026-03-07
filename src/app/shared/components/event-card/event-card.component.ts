@@ -7,11 +7,12 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { SportEvent } from '../../../core/models/event.model';
+import { BadgeComponent } from '../badge/badge.component';
 
 @Component({
   selector: 'app-event-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BadgeComponent],
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.less'],
   host: {
@@ -31,7 +32,6 @@ export class EventCardComponent {
 
   onCardClick(event?: Event) {
     if (event) {
-      // Prevent default scrolling down when hitting spacebar
       event.preventDefault();
     }
     this.router.navigate(['/event', this.event().id]);

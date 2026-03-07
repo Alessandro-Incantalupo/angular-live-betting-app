@@ -7,12 +7,14 @@ import {
   input,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { SlugifyPipe } from '../../core/pipes/slugify.pipe';
 import { EventsStore } from '../../core/state/events.store';
+import { BadgeComponent } from '../../shared/components/badge/badge.component';
 
 @Component({
   selector: 'app-event-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, BadgeComponent, SlugifyPipe],
   templateUrl: './event-detail.component.html',
   styleUrls: ['./event-detail.component.less'],
   host: {

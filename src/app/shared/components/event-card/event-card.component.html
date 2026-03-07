@@ -1,6 +1,7 @@
-<span class="event-badge" aria-label="Category"
-  >{{ event().sport }} - {{ event().category }}</span
->
+<div class="tags" aria-label="Event Categories">
+  <app-badge variant="sport">{{ event().sport }}</app-badge>
+  <app-badge variant="category">{{ event().category }}</app-badge>
+</div>
 
 <h3 class="event-title" [attr.aria-label]="'Match: ' + event().name">
   {{ event().name }}

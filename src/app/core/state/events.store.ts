@@ -12,6 +12,7 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 import { SportEvent } from '../models/event.model';
 import { EventsService } from '../services/events.service';
+import { slugify } from '../utils/string.utils';
 import {
   setEventsError,
   setEventsLoaded,
@@ -45,8 +46,10 @@ export const EventsStore = signalStore(
       const category = state.selectedCategory();
 
       return allEvents.filter((event) => {
-        const matchSport = sport ? event.sport === sport : true;
-        const matchCategory = category ? event.category === category : true;
+        const matchSport = sport ? slugify(event.sport) === sport : true;
+        const matchCategory = category
+          ? slugify(event.category) === category
+          : true;
         return matchSport && matchCategory;
       });
     }),
@@ -57,7 +60,7 @@ export const EventsStore = signalStore(
     availableCategories: computed(() => {
       const currentSport = state.selectedSport();
       const baseEvents = currentSport
-        ? state.events().filter((e) => e.sport === currentSport)
+        ? state.events().filter((e) => slugify(e.sport) === currentSport)
         : state.events();
       const categories = new Set(baseEvents.map((e) => e.category));
       return Array.from(categories).sort();

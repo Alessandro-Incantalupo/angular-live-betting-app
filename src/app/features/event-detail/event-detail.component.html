@@ -1,6 +1,21 @@
 <div class="detail-body">
   <nav class="navigation-bar" aria-label="Back navigation">
-    <a routerLink="/" class="back-link" aria-label="Back to Events List">
+    <a
+      [routerLink]="
+        store.selectedSport() && store.selectedCategory()
+          ? [
+              '/sport',
+              store.selectedSport(),
+              'category',
+              store.selectedCategory(),
+            ]
+          : store.selectedSport()
+            ? ['/sport', store.selectedSport()]
+            : ['/']
+      "
+      class="back-link"
+      aria-label="Back to Events List"
+    >
       <span class="arrow" aria-hidden="true">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -29,8 +44,12 @@
       <article class="event-content">
         <header class="header-section">
           <div class="tags" aria-label="Event Categories">
-            <span class="tag sport">{{ e.sport }}</span>
-            <span class="tag category">{{ e.category }}</span>
+            <app-badge variant="sport" [inverse]="true">{{
+              e.sport
+            }}</app-badge>
+            <app-badge variant="category" [inverse]="true">{{
+              e.category
+            }}</app-badge>
           </div>
           <h2 id="event-title">{{ e.name }}</h2>
           <p class="event-id" aria-label="Match Identifier">
