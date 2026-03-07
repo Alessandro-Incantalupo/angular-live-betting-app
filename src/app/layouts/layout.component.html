@@ -3,10 +3,29 @@
 </header>
 
 <div class="app-body">
-  <aside class="sidebar" aria-label="Sidebar Navigation">
-    <h2 id="filters-heading">Filters</h2>
+  <aside
+    class="sidebar"
+    (click)="$event.stopPropagation()"
+    aria-label="Sidebar Navigation"
+  >
+    <div class="mobile-filters-header">
+      <h2 id="filters-heading">Filters</h2>
+      <button
+        class="mobile-menu-toggle"
+        (click)="toggleMobileMenu($event)"
+        [attr.aria-expanded]="isMobileMenuOpen()"
+        aria-controls="filter-nav"
+      >
+        {{ isMobileMenuOpen() ? "Hide Filters" : "Show Filters" }}
+      </button>
+    </div>
 
-    <nav class="filter-section" aria-labelledby="filters-heading">
+    <nav
+      id="filter-nav"
+      class="filter-section"
+      [class.mobile-hidden]="!isMobileMenuOpen()"
+      aria-labelledby="filters-heading"
+    >
       <ul>
         <li>
           <a
@@ -63,6 +82,7 @@
                     <li>
                       <a
                         [routerLink]="['/sport', sport, 'category', category]"
+                        (click)="closeMobileMenu()"
                         [class.active]="store.selectedCategory() === category"
                         [attr.aria-current]="
                           store.selectedCategory() === category ? 'page' : null

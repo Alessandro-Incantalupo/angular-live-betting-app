@@ -12,8 +12,21 @@
     font-weight: 600;
     font-size: 1.1rem;
 
+    .arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+    }
+
     &:hover {
-      text-decoration: underline;
+      .link-text {
+        text-decoration: underline;
+      }
     }
   }
 }

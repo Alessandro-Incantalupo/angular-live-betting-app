@@ -14,7 +14,7 @@ export class EventsService {
     // return throwError(() => new Error('Simulated Backend Error')).pipe(
     //   delay(3000),
     // );
-    // Artificial 3-second delay:
+    // Artificial 3-second delay for Loading in the UI:
     // return this.http
     //   .get<SportEvent[]>(`${this.apiUrl}/events`)
     //   .pipe(delay(3000));
