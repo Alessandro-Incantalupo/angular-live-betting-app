@@ -80,14 +80,20 @@ export const EventsStore = signalStore(
 
     loadEvents: rxMethod<void>(
       pipe(
-        tap(() => updateState(state, 'Events: Loading', setEventsLoading())),
+        tap(() => {
+          if (state.events().length === 0) {
+            updateState(state, 'Events: Loading', setEventsLoading());
+          }
+        }),
         switchMap(() => {
           return eventsService.getEvents().pipe(
             tapResponse({
               next: (events) => {
+                const isPolling = state.events().length > 0;
+
                 updateState(
                   state,
-                  'Events: Load Success',
+                  isPolling ? 'Events: Polled Success' : 'Events: Load Success',
                   { events },
                   setEventsLoaded(),
                 );
