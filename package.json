@@ -7,6 +7,7 @@
     "dev": "concurrently --kill-others \"npm run start\" \"npm run server\"",
     "server": "node ./mock_server/server.js",
     "build": "ng build",
+    "serve:prod": "ng build && concurrently \"npx http-server -p 4200 -c-1 dist/betting-hiring/browser\" \"npm run server\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

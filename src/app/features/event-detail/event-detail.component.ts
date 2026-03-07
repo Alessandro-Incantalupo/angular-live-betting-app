@@ -17,6 +17,7 @@ import { EventsStore } from '../../core/state/events.store';
   styleUrls: ['./event-detail.component.less'],
   host: {
     class: 'event-detail-container',
+    style: 'display: block; max-width: 800px; margin: 0 auto; width: 100%;',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

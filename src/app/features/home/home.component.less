@@ -1,12 +1,5 @@
 @import "@styles/variables.less";
 
-:host {
-  display: flex;
-  flex: 1;
-  min-height: 0;
-  width: 100%;
-}
-
 .events-area {
   display: flex;
   flex-direction: column;
@@ -72,4 +65,43 @@
 .error-state {
   color: @color-error;
   background: @color-error-bg;
+}
+
+@keyframes pulse-skeleton {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.event-skeleton {
+  background: @color-white;
+  border-radius: @radius-md;
+  box-shadow: @shadow-sm;
+  padding: @space-4;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: @space-4;
+  animation: pulse-skeleton 1.5s infinite ease-in-out;
+
+  .skeleton-header {
+    height: 20px;
+    width: 60%;
+    background: @color-border;
+    border-radius: @radius-sm;
+  }
+
+  .skeleton-body {
+    height: 12px;
+    width: 40%;
+    background: @color-border;
+    border-radius: @radius-sm;
+    margin-top: auto;
+  }
 }

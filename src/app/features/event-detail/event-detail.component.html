@@ -1,11 +1,8 @@
-<header class="app-header">
-  <div class="header-content">
-    <a routerLink="/" class="back-link">&larr; Back to Events</a>
-    <h1>Betting Hiring Application</h1>
-  </div>
-</header>
-
 <div class="detail-body">
+  <div class="navigation-bar">
+    <a routerLink="/" class="back-link">&larr; Back to Events</a>
+  </div>
+
   @if (store.eventsLoading()) {
     <p class="loading-state">Loading event details...</p>
   } @else if (store.eventsError()) {
