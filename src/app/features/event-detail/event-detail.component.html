@@ -4,13 +4,12 @@
       [routerLink]="
         store.selectedSport() && store.selectedCategory()
           ? [
-              '/sport',
+              '/' + APP_ROUTES.BETS,
               store.selectedSport(),
-              'category',
               store.selectedCategory(),
             ]
           : store.selectedSport()
-            ? ['/sport', store.selectedSport()]
+            ? ['/' + APP_ROUTES.BETS, store.selectedSport()]
             : ['/']
       "
       class="back-link"

@@ -6,7 +6,9 @@ import {
   input,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { APP_ROUTES } from '../../../core/constants/routes.constants';
 import { SportEvent } from '../../../core/models/event.model';
+import { slugify } from '../../../core/utils/string.utils';
 import { BadgeComponent } from '../badge/badge.component';
 
 @Component({
@@ -34,6 +36,12 @@ export class EventCardComponent {
     if (event) {
       event.preventDefault();
     }
-    this.router.navigate(['/event', this.event().id]);
+    const evt = this.event();
+    this.router.navigate([
+      '/' + APP_ROUTES.BETS,
+      slugify(evt.sport),
+      slugify(evt.category),
+      evt.id,
+    ]);
   }
 }

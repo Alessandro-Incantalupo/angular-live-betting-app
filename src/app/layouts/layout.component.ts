@@ -6,6 +6,7 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { APP_ROUTES } from '../core/constants/routes.constants';
 import { SlugifyPipe } from '../core/pipes/slugify.pipe';
 import { EventsStore } from '../core/state/events.store';
 
@@ -25,6 +26,7 @@ import { EventsStore } from '../core/state/events.store';
 })
 export default class LayoutComponent {
   store = inject(EventsStore);
+  APP_ROUTES = APP_ROUTES;
 
   isMobileMenuOpen = signal(false);
 
