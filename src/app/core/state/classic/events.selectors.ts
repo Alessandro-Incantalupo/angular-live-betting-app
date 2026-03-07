@@ -4,7 +4,6 @@ import { ClassicEventsState } from './events.reducer';
 export const selectEventsState =
   createFeatureSelector<ClassicEventsState>('classicEvents');
 
-// Basic Selectors
 export const selectAllEvents = createSelector(
   selectEventsState,
   (state) => state.events,
@@ -30,7 +29,6 @@ export const selectEventsError = createSelector(
   (state) => state.error,
 );
 
-// Derived Computed Selectors
 export const selectFilteredEvents = createSelector(
   selectAllEvents,
   selectSelectedSport,

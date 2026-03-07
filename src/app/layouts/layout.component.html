@@ -53,15 +53,16 @@
           @for (sport of store.availableSports(); track sport) {
             <li>
               <a
-                [routerLink]="['/sport', sport]"
-                [class.active]="store.selectedSport() === sport"
+                [routerLink]="['/sport', sport | slugify]"
+                [class.active]="store.selectedSport() === (sport | slugify)"
                 [attr.aria-current]="
-                  store.selectedSport() === sport && !store.selectedCategory()
+                  store.selectedSport() === (sport | slugify) &&
+                  !store.selectedCategory()
                     ? 'page'
                     : null
                 "
                 [attr.aria-expanded]="
-                  store.selectedSport() === sport &&
+                  store.selectedSport() === (sport | slugify) &&
                   store.availableCategories().length > 0
                     ? 'true'
                     : 'false'
@@ -71,7 +72,7 @@
               </a>
 
               @if (
-                store.selectedSport() === sport &&
+                store.selectedSport() === (sport | slugify) &&
                 store.availableCategories().length > 0
               ) {
                 <ul class="submenu" [attr.aria-label]="sport + ' categories'">
@@ -81,11 +82,20 @@
                   ) {
                     <li>
                       <a
-                        [routerLink]="['/sport', sport, 'category', category]"
+                        [routerLink]="[
+                          '/sport',
+                          (sport | slugify),
+                          'category',
+                          (category | slugify),
+                        ]"
                         (click)="closeMobileMenu()"
-                        [class.active]="store.selectedCategory() === category"
+                        [class.active]="
+                          store.selectedCategory() === (category | slugify)
+                        "
                         [attr.aria-current]="
-                          store.selectedCategory() === category ? 'page' : null
+                          store.selectedCategory() === (category | slugify)
+                            ? 'page'
+                            : null
                         "
                       >
                         {{ category }}

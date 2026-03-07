@@ -6,12 +6,13 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { SlugifyPipe } from '../core/pipes/slugify.pipe';
 import { EventsStore } from '../core/state/events.store';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, CommonModule],
+  imports: [RouterOutlet, RouterLink, CommonModule, SlugifyPipe],
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.less'],
   host: {
