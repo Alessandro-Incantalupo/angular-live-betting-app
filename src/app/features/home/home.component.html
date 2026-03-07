@@ -1,18 +1,23 @@
-<section class="events-area">
-  <h2>Available Events</h2>
+<section class="events-area" aria-labelledby="events-heading">
+  <h2 id="events-heading">Available Events</h2>
 
-  <div class="events-scroll">
+  <div
+    class="events-scroll"
+    role="feed"
+    aria-busy="false"
+    [attr.aria-busy]="store.eventsLoading()"
+  >
     @if (store.eventsLoading()) {
-      <div class="loading-state">
+      <div class="loading-state" role="status" aria-live="polite">
         <p>Loading latest odds...</p>
       </div>
     } @else if (store.eventsError()) {
-      <div class="error-state">
+      <div class="error-state" role="alert">
         <p>Error loading events: {{ store.eventsError() }}</p>
       </div>
     } @else {
       @if (store.filteredEvents().length === 0) {
-        <div class="empty-state">
+        <div class="empty-state" role="status">
           <p>No events found for the selected filters.</p>
         </div>
       } @else {
@@ -21,7 +26,7 @@
             @defer (on viewport) {
               <app-event-card [event]="event"></app-event-card>
             } @placeholder {
-              <div class="event-skeleton">
+              <div class="event-skeleton" aria-hidden="true">
                 <div class="skeleton-header"></div>
                 <div class="skeleton-body"></div>
               </div>
