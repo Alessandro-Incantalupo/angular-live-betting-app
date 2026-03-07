@@ -42,7 +42,7 @@
     @if (event(); as e) {
       <article class="event-content">
         <header class="header-section">
-          <div class="tags" aria-label="Event Categories">
+          <div class="tags" role="group" aria-label="Event Categories">
             <app-badge variant="sport" [inverse]="true">{{
               e.sport
             }}</app-badge>
@@ -65,6 +65,7 @@
           <div class="odds-display" role="group" aria-label="Match Odds">
             <div
               class="odd-box"
+              role="group"
               tabindex="0"
               [attr.aria-label]="'Home Win at ' + e.odds['1']"
             >
@@ -75,6 +76,7 @@
             </div>
             <div
               class="odd-box"
+              role="group"
               tabindex="0"
               [attr.aria-label]="'Draw at ' + e.odds['x']"
             >
@@ -85,6 +87,7 @@
             </div>
             <div
               class="odd-box"
+              role="group"
               tabindex="0"
               [attr.aria-label]="'Away Win at ' + e.odds['2']"
             >
