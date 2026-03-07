@@ -53,7 +53,7 @@
           @for (sport of store.availableSports(); track sport) {
             <li>
               <a
-                [routerLink]="['/sport', sport | slugify]"
+                [routerLink]="['/' + APP_ROUTES.BETS, sport | slugify]"
                 [class.active]="store.selectedSport() === (sport | slugify)"
                 [attr.aria-current]="
                   store.selectedSport() === (sport | slugify) &&
@@ -83,10 +83,10 @@
                     <li>
                       <a
                         [routerLink]="[
-                          '/sport',
-                          (sport | slugify),
-                          'category',
-                          (category | slugify),
+                          '/' + APP_ROUTES.BETS,
+                          sport | slugify,
+
+                          category | slugify,
                         ]"
                         (click)="closeMobileMenu()"
                         [class.active]="

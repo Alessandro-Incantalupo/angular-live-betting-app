@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { APP_ROUTES } from './core/constants/routes.constants';
 
 export const routes: Routes = [
   {
@@ -10,15 +11,15 @@ export const routes: Routes = [
         loadComponent: () => import('./features/home/home.component'),
       },
       {
-        path: 'sport/:sport',
+        path: `${APP_ROUTES.BETS}/:sport`,
         loadComponent: () => import('./features/home/home.component'),
       },
       {
-        path: 'sport/:sport/category/:category',
+        path: `${APP_ROUTES.BETS}/:sport/:category`,
         loadComponent: () => import('./features/home/home.component'),
       },
       {
-        path: 'event/:id',
+        path: `${APP_ROUTES.BETS}/:sport/:category/:id`,
         loadComponent: () =>
           import('./features/event-detail/event-detail.component'),
       },

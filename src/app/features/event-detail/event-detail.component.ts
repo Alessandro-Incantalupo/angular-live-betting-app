@@ -7,6 +7,7 @@ import {
   input,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { APP_ROUTES } from '../../core/constants/routes.constants';
 import { SlugifyPipe } from '../../core/pipes/slugify.pipe';
 import { EventsStore } from '../../core/state/events.store';
 import { BadgeComponent } from '../../shared/components/badge/badge.component';
@@ -25,8 +26,11 @@ import { BadgeComponent } from '../../shared/components/badge/badge.component';
 })
 export default class EventDetailComponent {
   store = inject(EventsStore);
+  APP_ROUTES = APP_ROUTES;
 
   id = input.required<string>();
+  sport = input<string>();
+  category = input<string>();
 
   eventId = computed(() => Number(this.id()));
 
@@ -34,4 +38,11 @@ export default class EventDetailComponent {
     const id = this.eventId();
     return this.store.events().find((e) => e.id === id);
   });
+
+  protected readonly syncRoute = this.store.syncRouteParams(
+    computed(() => ({
+      sport: this.sport(),
+      category: this.category(),
+    })),
+  );
 }
