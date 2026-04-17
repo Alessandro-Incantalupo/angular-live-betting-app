@@ -1,18 +1,18 @@
-# Betting Hiring – Angular Technical Showcase
+# Angular Betting App – Skills Showcase
 
-> A production-ready Angular application built on top of a hiring exercise skeleton, demonstrating modern frontend engineering practices.
+> A proof-of-concept sports betting application built to demonstrate Angular expertise. It covers real-world patterns including reactive state management with NgRx Signal Store, live data polling, accessibility, and a scalable feature-based architecture.
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Angular 17+ (standalone components) |
+| Layer            | Technology                                                     |
+| ---------------- | -------------------------------------------------------------- |
+| Framework        | Angular 17+ (standalone components)                            |
 | State Management | NgRx Signal Store + NgRx Classic (Store / Effects / Selectors) |
-| Reactivity | Angular Signals, RxJS, `rxMethod` |
-| Styling | LESS with design tokens via variables |
-| Mock Server | Koa.js (Node) |
+| Reactivity       | Angular Signals, RxJS, `rxMethod`                              |
+| Styling          | LESS with design tokens via variables                          |
+| Mock Server      | Koa.js (Node)                                                  |
 
 ---
 
@@ -28,10 +28,10 @@ npm run dev
 
 ### Mock Server Endpoints
 
-| Endpoint | Description |
-|---|---|
-| `GET http://localhost:3000/events` | All sporting events |
-| `GET http://localhost:3000/event/:id` | Single event by ID |
+| Endpoint                              | Description         |
+| ------------------------------------- | ------------------- |
+| `GET http://localhost:3000/events`    | All sporting events |
+| `GET http://localhost:3000/event/:id` | Single event by ID  |
 
 ---
 
@@ -43,12 +43,12 @@ The application state is managed with **NgRx Signal Store** (`@ngrx/signals`), t
 
 ```ts
 export const EventsStore = signalStore(
-  { providedIn: 'root' },
-  withDevtools('EventsStore'),   // Redux DevTools integration
+  { providedIn: "root" },
+  withDevtools("EventsStore"), // Redux DevTools integration
   withState(initialState),
-  withEventsCallState(),         // custom reusable call-state feature
+  withEventsCallState(), // custom reusable call-state feature
   withComputed(/* derived signals */),
-  withMethods(/* reactive methods via rxMethod */)
+  withMethods(/* reactive methods via rxMethod */),
 );
 ```
 
@@ -61,11 +61,7 @@ A custom **SignalStore Feature** (`withEventsCallState`) encapsulates loading/er
 Live odds update automatically every **15 seconds** via a dedicated NgRx Effect using `timer`:
 
 ```ts
-pollEvents$ = createEffect(() =>
-  timer(15000, 15000).pipe(
-    map(() => EventsActions.loadEvents())
-  )
-);
+pollEvents$ = createEffect(() => timer(15000, 15000).pipe(map(() => EventsActions.loadEvents())));
 ```
 
 The classic NgRx slice (`actions / reducer / effects / selectors`) runs in parallel with the Signal Store, demonstrating familiarity with both paradigms.
@@ -78,11 +74,11 @@ Router is configured with `withComponentInputBinding()`, enabling Angular to **b
 
 ```ts
 // app.config.ts
-provideRouter(routes, withComponentInputBinding())
+provideRouter(routes, withComponentInputBinding());
 
 // home.component.ts
-sport    = input<string>();    // bound from :sport route param
-category = input<string>();   // bound from :category route param
+sport = input<string>(); // bound from :sport route param
+category = input<string>(); // bound from :category route param
 ```
 
 Route params are synced into the Signal Store via `rxMethod`, which drives computed filtered state:
@@ -159,18 +155,18 @@ src/app/
 
 ### Modern Angular Patterns
 
-| Pattern | Where |
-|---|---|
-| Standalone components | All components — no NgModules |
-| `inject()` function | All services/stores injected without constructor |
-| `input()` / `computed()` signals | Components and store |
-| `rxMethod` | Bridging RxJS streams into the Signal Store |
-| Functional route config | `app.routes.ts` — no routing modules |
-| `withComponentInputBinding` | Route params as typed `@Input()` signals |
-| Custom SignalStore feature | `withEventsCallState` |
+| Pattern                          | Where                                            |
+| -------------------------------- | ------------------------------------------------ |
+| Standalone components            | All components — no NgModules                    |
+| `inject()` function              | All services/stores injected without constructor |
+| `input()` / `computed()` signals | Components and store                             |
+| `rxMethod`                       | Bridging RxJS streams into the Signal Store      |
+| Functional route config          | `app.routes.ts` — no routing modules             |
+| `withComponentInputBinding`      | Route params as typed `input()` signals          |
+| Custom SignalStore feature       | `withEventsCallState`                            |
 
 ---
 
-## Project Origin
+## About
 
-This application was built on top of a hiring exercise skeleton for a sports betting platform. The task required routing, NgRx state, RxJS data streams, component architecture, LESS styling, and optional polling. Every requirement was implemented and extended with production-grade patterns.
+This project was built as a focused proof of concept for a sports betting domain. Rather than taking shortcuts, every layer of the stack reflects a deliberate choice: NgRx Signal Store over a simpler service, reusable custom store features, `withComponentInputBinding` to keep components clean, `OnPush` everywhere, and proper ARIA semantics on live-updating data. The domain is simple by design — the point is the engineering beneath it.
