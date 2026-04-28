@@ -2,17 +2,22 @@
 
 > A proof-of-concept sports betting application built to demonstrate Angular expertise. Every architectural decision is deliberate — from NgRx Signal Store composition, to live polling, to full accessibility on dynamic odds data.
 
+## Why I Built It
+
+Most Angular demos pick one state management paradigm and stop there. This one runs NgRx Signal Store and classic NgRx Effects side-by-side in the same application, and explains exactly why: the Signal Store owns local UI state, while a classic `timer`-driven Effect handles polling — a cross-cutting concern that has no clean home inside the signal graph. The domain (sports betting) is intentionally simple. The point is the engineering discipline beneath it: `OnPush` everywhere, reusable custom SignalStore features, `withComponentInputBinding` to keep components clean, and full ARIA semantics on live-updating odds data.
+
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Angular 17+ (standalone components) |
-| State Management | NgRx Signal Store + NgRx Classic (Store / Effects / Selectors) |
-| Reactivity | Angular Signals, RxJS, `rxMethod` |
-| Styling | LESS with design tokens via variables |
-| Mock Server | Koa.js (Node) |
+| Layer | Technology | Decision |
+|---|---|---|
+| Framework | Angular 17+ (standalone components) | No NgModules — fully standalone component architecture |
+| Primary state | NgRx Signal Store | Signals-first, declarative, composable via custom features |
+| Secondary state | NgRx Classic (Store / Effects / Selectors) | Retained for `timer`-based polling — a cross-cutting concern that belongs outside the signal graph |
+| Reactivity bridge | Angular Signals, RxJS, `rxMethod` | Bridges RxJS streams into the signal store without leaking Observables into components |
+| Styling | LESS with design tokens via variables | Variables-based theming, no utility-class sprawl |
+| Mock Server | Koa.js (Node) | Zero-framework overhead for a pure API mock |
 
 ---
 
@@ -32,6 +37,13 @@ npm run dev
 |---|---|
 | `GET http://localhost:3000/events` | All sporting events |
 | `GET http://localhost:3000/event/:id` | Single event by ID |
+
+---
+
+## Screenshot
+
+<!-- Add screenshot or GIF here: npm run dev, navigate to localhost:4200, capture events list with odds -->
+![Events list with live odds updating every 15 seconds](./docs/screenshot.png)
 
 ---
 
@@ -157,20 +169,18 @@ src/app/
 
 ---
 
-### Modern Angular Patterns
+## What This Demonstrates
 
-| Pattern | Where |
+| Skill | Where |
 |---|---|
-| Standalone components | All components — no NgModules |
-| `inject()` function | All services/stores injected without constructor |
-| `input()` / `computed()` signals | Components and store |
-| `rxMethod` | Bridging RxJS streams into the Signal Store |
-| Functional route config | `app.routes.ts` — no routing modules |
-| `withComponentInputBinding` | Route params as typed `@Input()` signals |
-| Custom SignalStore feature | `withEventsCallState` |
-
----
-
-## About
-
-This project was built as a focused proof of concept for a sports betting domain. Rather than taking shortcuts, every layer of the stack reflects a deliberate choice: NgRx Signal Store over a simpler service, reusable custom store features, `withComponentInputBinding` to keep components clean, `OnPush` everywhere, and proper ARIA semantics on live-updating data. The domain is simple by design — the point is the engineering beneath it.
+| NgRx Signal Store with custom reusable feature | `src/core/state/events.store.ts`, `features/withEventsCallState.ts` |
+| Classic NgRx slice (actions/reducer/effects/selectors) running alongside Signal Store | `src/core/state/classic/` |
+| `rxMethod` — RxJS-to-signals bridge | `withMethods()` in the store |
+| `withComponentInputBinding` — route params as typed `@Input()` signals | `app.config.ts`, `home.component.ts` |
+| `ChangeDetectionStrategy.OnPush` on every component | All components |
+| Lazy-loaded routes via `loadComponent` | `app.routes.ts` |
+| Full ARIA semantics on live-updating odds data | `event-card.component.html` |
+| Standalone components — zero NgModules | All components |
+| `inject()` function — no constructor injection | All services and stores |
+| Custom SignalStore feature composition | `withEventsCallState` |
+| Feature-based folder structure (`core/`, `features/`, `shared/`) | `src/app/` |
