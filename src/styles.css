@@ -81,6 +81,26 @@ input {
   color: var(--on-accent);
 }
 
+/* A price that just moved: a short wash of green or red. The arrow stays as the lasting signal. */
+@keyframes price-up {
+  from {
+    background-color: var(--success-subtle);
+    border-color: var(--success);
+  }
+}
+@keyframes price-down {
+  from {
+    background-color: var(--danger-subtle);
+    border-color: var(--danger);
+  }
+}
+.price-up {
+  animation: price-up 1.6s ease-out;
+}
+.price-down {
+  animation: price-down 1.6s ease-out;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

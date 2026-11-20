@@ -39,4 +39,13 @@ describe('EventCard', () => {
     expect(move.querySelector('[aria-hidden="true"]')?.textContent).toBe('▲');
     expect(move.querySelector('.visually-hidden')?.textContent).toBe(', up');
   });
+
+  it('marks only the prices that moved for the flash', async () => {
+    const boxes = [...(await render(3, { away: 'down' })).querySelectorAll('.price')];
+    expect(boxes.map((box) => box.className.replace('price', '').trim())).toEqual([
+      '',
+      '',
+      'price-down',
+    ]);
+  });
 });

@@ -7,8 +7,13 @@
     <a [routerLink]="['/events', event().id]">{{ name() }}</a>
   </h2>
   <dl class="prices">
-    @for (price of prices(); track price.selection) {
-      <div class="price">
+    <!-- Tracked by value too: a new price is a new box, so the flash plays once per move. -->
+    @for (price of prices(); track price.selection + price.value) {
+      <div
+        class="price"
+        [class.price-up]="price.move === 'up'"
+        [class.price-down]="price.move === 'down'"
+      >
         <dt>
           <span aria-hidden="true">{{ price.code }}</span>
           <span class="visually-hidden">{{ price.label }}</span>
