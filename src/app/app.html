@@ -1,16 +1,16 @@
 <a class="skip-link" href="#main" (click)="skipToMain($event)">Skip to content</a>
 
-<header class="topbar">
+<!-- The bar is dark in both themes: the token roles inside it come from the dark theme. -->
+<header class="topbar" data-theme="dark">
   <a class="brand" routerLink="/">
     <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24">
       <path d="M3 17l5-6 4 4 8-10" fill="none" stroke="currentColor" stroke-width="2.5" />
     </svg>
     Live odds
   </a>
+  <app-live-controls />
   <app-theme-toggle />
 </header>
-
-<app-live-controls />
 
 <div class="layout">
   <app-sport-nav />
