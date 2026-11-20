@@ -18,6 +18,13 @@ h1 {
   list-style: none;
 }
 
+.placeholder {
+  height: 10rem;
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--surface-sunken);
+}
+
 .notice {
   margin: var(--space-4) 0;
 }

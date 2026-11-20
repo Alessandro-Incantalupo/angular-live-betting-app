@@ -1,7 +1,13 @@
 <h1 tabindex="-1">{{ heading() }}</h1>
 
-@if (store.isLoading()) {
-  <p class="notice" role="status">Loading the odds…</p>
+@if (store.isLoading() || store.requestStatus() === 'idle') {
+  <p class="summary" role="status">Loading the odds…</p>
+  <!-- Placeholders hold the space, so the page doesn't jump when the cards arrive. -->
+  <ul class="grid" aria-hidden="true">
+    @for (slot of placeholders; track slot) {
+      <li class="placeholder"></li>
+    }
+  </ul>
 } @else if (store.error() && store.entities().length === 0) {
   <div class="notice error" role="alert">
     <p>Couldn't load the odds. We'll keep trying every few seconds.</p>

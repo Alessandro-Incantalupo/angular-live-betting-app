@@ -17,12 +17,15 @@ export default class EventsList {
   readonly sport = input<string>();
   readonly category = input<string>();
 
+  protected readonly placeholders = [1, 2, 3, 4, 5, 6];
+
   protected readonly heading = computed(() => {
     const sport = this.store.selectedSport();
     const category = this.store.selectedCategory();
     if (category) return category.name;
     if (sport) return sport.name;
-    return this.sport() ? 'Unknown sport' : 'All sports';
+    if (!this.sport()) return 'All sports';
+    return this.store.entities().length > 0 ? 'Unknown sport' : 'Loading…';
   });
 
   /** The line under the heading: which sport a competition belongs to, and how many events. */
