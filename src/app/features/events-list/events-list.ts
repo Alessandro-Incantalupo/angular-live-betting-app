@@ -17,7 +17,7 @@ export default class EventsList {
   readonly sport = input<string>();
   readonly category = input<string>();
 
-  protected readonly placeholders = [1, 2, 3, 4, 5, 6];
+  protected readonly placeholders = [1, 2, 3, 4, 5, 6, 7, 8];
 
   protected readonly heading = computed(() => {
     const sport = this.store.selectedSport();

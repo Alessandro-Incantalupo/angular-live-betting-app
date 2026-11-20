@@ -1,17 +1,17 @@
 h1 {
   margin: 0 0 var(--space-1);
-  font-size: var(--type-3xl);
+  font-size: var(--type-2xl);
   line-height: var(--type-leading-tight);
 }
 
 .summary {
-  margin: 0 0 var(--space-6);
+  margin: 0 0 var(--space-4);
   color: var(--text-muted);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
   gap: var(--space-4);
   margin: 0;
   padding: 0;
@@ -20,9 +20,9 @@ h1 {
 
 .placeholder {
   height: 10rem;
-  border: 1px solid var(--border);
   border-radius: var(--card-radius);
-  background: var(--surface-sunken);
+  background: var(--surface-raised);
+  box-shadow: var(--card-shadow);
 }
 
 .notice {

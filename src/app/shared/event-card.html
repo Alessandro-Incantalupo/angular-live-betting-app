@@ -1,5 +1,8 @@
 <article class="card">
-  <p class="meta">{{ event().sport }} · {{ event().category }}</p>
+  <p class="pills">
+    <span class="pill sport">{{ event().sport }}</span><span class="visually-hidden">, </span
+    ><span class="pill category">{{ event().category }}</span>
+  </p>
   <h2 class="title">
     <a [routerLink]="['/events', event().id]">{{ name() }}</a>
   </h2>

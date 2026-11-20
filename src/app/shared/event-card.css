@@ -3,20 +3,26 @@
   height: 100%;
 }
 
+/* A raised card on the grey page; it lifts a little under the pointer. */
 .card {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-3);
   height: 100%;
   padding: var(--space-4);
   background: var(--surface-raised);
-  border: 1px solid var(--border);
+  /* Transparent until forced colours draw it. */
+  border: 1px solid transparent;
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
+  transition:
+    transform 0.2s ease-out,
+    box-shadow 0.2s ease-out;
 }
 .card:hover {
-  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  box-shadow: var(--overlay-shadow);
 }
 /* The whole card follows the link; the focus ring goes around the card. */
 .card:has(a:focus-visible) {
@@ -24,19 +30,16 @@
   outline-offset: var(--focus-ring-offset);
 }
 
-.meta {
-  margin: 0;
-  color: var(--text-muted);
-}
-
 .title {
   margin: 0;
-  font-size: var(--type-lg);
+  font-size: var(--type-base);
+  font-weight: 700;
   line-height: var(--type-leading-tight);
 }
 .title a {
   color: var(--text);
   text-decoration: none;
+  transition: color 0.2s;
 }
 .title a:focus-visible {
   outline: none;
@@ -48,32 +51,34 @@
   border-radius: inherit;
 }
 .card:hover .title a {
-  text-decoration: underline;
+  color: var(--link);
 }
 
+/* 1 X 2 as a row of boxes: the outcome above, the price below. */
 .prices {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: minmax(0, 1fr);
   gap: var(--space-2);
   margin: auto 0 0;
-  padding-top: var(--space-2);
 }
 
 .price {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-3);
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--control-radius);
-  background: var(--surface-sunken);
 }
 
 dt {
   color: var(--text-muted);
+  font-size: var(--type-sm);
   font-weight: 600;
 }
 dd {
   margin: 0;
+  font-size: var(--type-lg);
 }

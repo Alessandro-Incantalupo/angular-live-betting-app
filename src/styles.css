@@ -11,9 +11,10 @@ html {
   text-size-adjust: 100%;
 }
 
+/* The page sits one step below the cards, so the cards stand out from it in both themes. */
 body {
   margin: 0;
-  background: var(--surface);
+  background: var(--surface-sunken);
   color: var(--text);
   font-family: var(--body-font);
   font-size: var(--type-base);
@@ -47,6 +48,37 @@ input {
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
+}
+
+/*
+ * Sport and competition labels on the cards and the event banner. The sport is the text
+ * colour turned into a fill (dark on a light page, light on a dark one), the competition
+ * the accent.
+ */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pill {
+  display: block;
+  padding: 0 var(--space-2);
+  border-radius: var(--pill-radius);
+  font-size: var(--type-sm);
+  font-weight: 600;
+  line-height: var(--type-leading-normal);
+  text-transform: uppercase;
+}
+.pill.sport {
+  background: var(--text);
+  color: var(--surface-raised);
+}
+.pill.category {
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 @media (prefers-reduced-motion: reduce) {
