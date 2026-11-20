@@ -1,0 +1,80 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  height: 100%;
+  padding: var(--space-4);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+}
+.card:hover {
+  border-color: var(--border-strong);
+}
+/* The whole card follows the link; the focus ring goes around the card. */
+.card:has(a:focus-visible) {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.meta {
+  margin: 0;
+  font-size: var(--type-sm);
+  color: var(--text-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--type-lg);
+  line-height: var(--type-leading-tight);
+}
+.title a {
+  color: var(--text);
+  text-decoration: none;
+}
+.title a:focus-visible {
+  outline: none;
+}
+.title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.card:hover .title a {
+  text-decoration: underline;
+}
+
+.prices {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: var(--space-2);
+  margin: auto 0 0;
+  padding-top: var(--space-2);
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--control-radius);
+  background: var(--surface-sunken);
+}
+
+dt {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+dd {
+  margin: 0;
+}

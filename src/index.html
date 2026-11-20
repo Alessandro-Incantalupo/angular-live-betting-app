@@ -2,16 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Betting Hiring</title>
+    <title>Live odds</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="View live betting odds, upcoming sports events, and detailed match information across various sports and categories."
+      content="Live sports odds that update every few seconds: an Angular demo with signals, NgRx Signal Store and accessible live updates."
     />
+    <meta name="color-scheme" content="light dark" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!-- Applies a saved theme before first paint. Its hash is in the CSP in netlify.toml. -->
+    <script>
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <app-root></app-root>
+    <noscript>This demo needs JavaScript: it is an Angular application.</noscript>
   </body>
 </html>

@@ -1,0 +1,83 @@
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface-sunken);
+  border-bottom: 1px solid var(--border);
+}
+
+.state,
+.problem {
+  margin: 0;
+}
+
+.state {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+}
+
+.time {
+  font-weight: 400;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: var(--pill-radius);
+  background: var(--border-strong);
+}
+.dot.live {
+  background: var(--success);
+}
+
+.problem:empty {
+  display: none;
+}
+.problem {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--control-radius);
+  background: var(--warning-subtle);
+  color: var(--warning-text);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  margin-left: auto;
+}
+
+.button {
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--control-radius);
+  background: var(--surface-raised);
+  color: var(--text);
+  cursor: pointer;
+}
+.button:hover {
+  background: var(--surface);
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  cursor: pointer;
+}
+.check input {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  accent-color: var(--accent);
+}

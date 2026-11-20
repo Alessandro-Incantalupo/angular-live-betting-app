@@ -1,0 +1,101 @@
+:host {
+  display: block;
+  max-width: 48rem;
+}
+
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  list-style: none;
+}
+.crumbs li + li::before {
+  content: '/';
+  padding: 0 var(--space-2);
+  color: var(--text-muted);
+}
+.crumbs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--link);
+}
+.crumbs a:hover {
+  color: var(--link-hover);
+}
+
+h1 {
+  margin: 0 0 var(--space-6);
+  font-size: var(--type-3xl);
+  line-height: var(--type-leading-tight);
+}
+
+h2 {
+  margin: var(--space-8) 0 var(--space-3);
+  font-size: var(--type-xl);
+}
+
+.prices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: var(--space-3);
+  margin: 0;
+}
+.price {
+  padding: var(--space-4);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+}
+.price dt {
+  color: var(--text-muted);
+}
+.price dd {
+  margin: var(--space-1) 0 0;
+  font-size: var(--type-2xl);
+}
+.code {
+  white-space: nowrap;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+th,
+td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+}
+th:first-child {
+  text-align: left;
+}
+thead th {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+tbody th {
+  font-weight: 400;
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.button {
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: var(--control-radius);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+  cursor: pointer;
+}

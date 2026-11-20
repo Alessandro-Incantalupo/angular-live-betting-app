@@ -1,0 +1,70 @@
+<nav aria-labelledby="sports-heading">
+  <h2 id="sports-heading" class="heading">Sports</h2>
+  <button
+    type="button"
+    class="toggle"
+    [attr.aria-expanded]="open()"
+    aria-controls="sport-list"
+    (click)="open.set(!open())"
+  >
+    {{ open() ? 'Hide sports' : 'Choose a sport' }}
+    <svg aria-hidden="true" viewBox="0 0 20 20" width="20" height="20" [class.flip]="open()">
+      <path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" />
+    </svg>
+  </button>
+
+  <ul id="sport-list" class="list" [class.closed]="!open()">
+    <li>
+      <a
+        routerLink="/"
+        [class.active]="store.view().sport === null && onList()"
+        [attr.aria-current]="store.view().sport === null && onList() ? 'page' : null"
+      >
+        All sports
+        @if (total()) {
+          <span class="count">{{ total() }}<span class="visually-hidden"> events</span></span>
+        }
+      </a>
+    </li>
+    @for (sport of store.sports(); track sport.slug) {
+      @let isSport = store.view().sport === sport.slug;
+      <li>
+        <a
+          [routerLink]="['/sports', sport.slug]"
+          [class.active]="isSport"
+          [attr.aria-current]="isSport && !store.view().category && onList() ? 'page' : null"
+        >
+          {{ sport.name }}
+          <span class="count"
+            >{{ sport.count
+            }}<span class="visually-hidden">{{
+              sport.count === 1 ? ' event' : ' events'
+            }}</span></span
+          >
+        </a>
+        @if (isSport) {
+          <ul class="sub" [attr.aria-label]="sport.name + ' competitions'">
+            @for (category of sport.categories; track category.slug) {
+              @let isCategory = store.view().category === category.slug;
+              <li>
+                <a
+                  [routerLink]="['/sports', sport.slug, category.slug]"
+                  [class.active]="isCategory"
+                  [attr.aria-current]="isCategory && onList() ? 'page' : null"
+                >
+                  {{ category.name }}
+                  <span class="count"
+                    >{{ category.count
+                    }}<span class="visually-hidden">{{
+                      category.count === 1 ? ' event' : ' events'
+                    }}</span></span
+                  >
+                </a>
+              </li>
+            }
+          </ul>
+        }
+      </li>
+    }
+  </ul>
+</nav>

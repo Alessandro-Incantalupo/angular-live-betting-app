@@ -1,0 +1,41 @@
+<section class="bar" aria-label="Live updates">
+  <p class="state">
+    @if (store.isPolling()) {
+      <span class="dot live" aria-hidden="true"></span> Live
+    } @else if (!store.live()) {
+      <span class="dot" aria-hidden="true"></span> Paused
+    } @else {
+      <span class="dot" aria-hidden="true"></span> Paused while this tab is in the background
+    }
+    @if (store.updatedAt(); as updatedAt) {
+      <span class="time">
+        · Updated <time [attr.datetime]="updatedAt">{{ updatedAt | date: 'HH:mm:ss' }}</time>
+      </span>
+    }
+  </p>
+
+  <!-- Only refresh problems are announced here; the clock above stays silent. -->
+  <p class="problem" role="status">
+    @if (store.error() && store.entities().length > 0) {
+      Couldn't refresh the odds. Showing the last prices; trying again.
+    }
+  </p>
+
+  <div class="actions">
+    <button type="button" class="button" (click)="store.setLive(!store.live())">
+      {{ store.live() ? 'Pause updates' : 'Resume updates' }}
+    </button>
+    <label class="check">
+      <input
+        type="checkbox"
+        [checked]="announcements.enabled()"
+        (change)="toggleAnnouncements($event)"
+        aria-describedby="announce-hint"
+      />
+      Announce changes
+    </label>
+    <span id="announce-hint" class="visually-hidden">
+      Screen readers read odds changes for the events on screen, at most every 20 seconds.
+    </span>
+  </div>
+</section>

@@ -1,0 +1,81 @@
+@if (event(); as event) {
+  <nav aria-label="Breadcrumb" class="crumbs">
+    <ol>
+      <li><a routerLink="/">All sports</a></li>
+      <li>
+        <a [routerLink]="['/sports', sportSlug()]">{{ event.sport }}</a>
+      </li>
+      <li>
+        <a [routerLink]="['/sports', sportSlug(), categorySlug()]">{{ event.category }}</a>
+      </li>
+    </ol>
+  </nav>
+
+  <h1 tabindex="-1">{{ name() }}</h1>
+
+  <section aria-labelledby="odds-heading">
+    <h2 id="odds-heading">Match odds</h2>
+    <dl class="prices">
+      @for (selection of selections(); track selection) {
+        <div class="price">
+          <dt>
+            {{ label(selection) }} <span class="code">({{ code(selection) }})</span>
+          </dt>
+          <dd>
+            <app-odds-value
+              [value]="event.odds[selection]!"
+              [move]="store.moves()[event.id]?.[selection]"
+            />
+          </dd>
+        </div>
+      }
+    </dl>
+  </section>
+
+  <section aria-labelledby="history-heading">
+    <h2 id="history-heading">Recent movement</h2>
+    @if (history().length > 1) {
+      <div class="table-wrap">
+        <table>
+          <caption class="visually-hidden">
+            Prices at each change since you opened the page, newest first.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Time</th>
+              @for (selection of selections(); track selection) {
+                <th scope="col">
+                  <span aria-hidden="true">{{ code(selection) }}</span>
+                  <span class="visually-hidden">{{ label(selection) }}</span>
+                </th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (point of history(); track point.at) {
+              <tr>
+                <th scope="row">
+                  <time [attr.datetime]="point.at">{{ point.at | date: 'HH:mm:ss' }}</time>
+                </th>
+                @for (selection of selections(); track selection) {
+                  <td>{{ point.odds[selection]?.toFixed(2) }}</td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="muted">No changes yet. Prices that move will be listed here.</p>
+    }
+  </section>
+} @else if (store.isLoading() || store.requestStatus() === 'idle') {
+  <h1 tabindex="-1">Loading the event…</h1>
+} @else if (store.error() && store.entities().length === 0) {
+  <h1 tabindex="-1">Couldn't load the event</h1>
+  <p>We'll keep trying every few seconds.</p>
+  <button type="button" class="button" (click)="store.refresh()">Try again now</button>
+} @else {
+  <h1 tabindex="-1">Event not found</h1>
+  <p>This event isn't on the list any more. <a routerLink="/">See all events</a>.</p>
+}

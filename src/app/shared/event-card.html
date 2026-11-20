@@ -1,0 +1,17 @@
+<article class="card">
+  <p class="meta">{{ event().sport }} · {{ event().category }}</p>
+  <h2 class="title">
+    <a [routerLink]="['/events', event().id]">{{ name() }}</a>
+  </h2>
+  <dl class="prices">
+    @for (price of prices(); track price.selection) {
+      <div class="price">
+        <dt>
+          <span aria-hidden="true">{{ price.code }}</span>
+          <span class="visually-hidden">{{ price.label }}</span>
+        </dt>
+        <dd><app-odds-value [value]="price.value" [move]="price.move" /></dd>
+      </div>
+    }
+  </dl>
+</article>
