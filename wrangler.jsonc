@@ -1,0 +1,13 @@
+{
+  // An assets-only Worker: Cloudflare serves the Angular build, no server code.
+  "name": "live-odds-angular-demo",
+  "compatibility_date": "2026-11-20",
+  "assets": {
+    "directory": "./dist/live-odds/browser",
+    // Unknown paths get index.html with a 200, so the Angular router handles every route.
+    "not_found_handling": "single-page-application",
+  },
+  "workers_dev": true,
+  // `wrangler versions upload` prints a URL for each version: the preview before a deploy.
+  "preview_urls": true,
+}

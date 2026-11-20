@@ -1,4 +1,4 @@
-// The theme script in src/index.html runs before Angular, inline, so the CSP in netlify.toml
+// The theme script in src/index.html runs before Angular, inline, so the CSP in public/_headers
 // allows it by hash. This check reads the built page (run it after `pnpm build`) and fails when
 // the script changed and the hash didn't. `--print` prints the hashes to paste.
 import { createHash } from 'node:crypto';
@@ -14,10 +14,11 @@ if (process.argv.includes('--print')) {
   process.exit(0);
 }
 
-const config = readFileSync(new URL('../netlify.toml', import.meta.url), 'utf8');
+// The _headers file as it ships, next to the built page.
+const config = readFileSync(new URL('../dist/live-odds/browser/_headers', import.meta.url), 'utf8');
 const missing = hashes.filter((hash) => !config.includes(hash));
 if (missing.length > 0) {
-  console.error(`netlify.toml CSP is missing ${missing.join(', ')} for the inline script(s).`);
+  console.error(`_headers CSP is missing ${missing.join(', ')} for the inline script(s).`);
   process.exit(1);
 }
 console.log(`CSP covers ${hashes.length} inline script(s).`);

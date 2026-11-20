@@ -36,8 +36,11 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Netlify
-.netlify
+# Cloudflare
+.wrangler
 
 # Local Lighthouse reports
 /reports
+
+# Local Netlify link from the earlier host
+.netlify

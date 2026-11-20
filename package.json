@@ -18,7 +18,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm check:csp",
-    "check:csp": "node scripts/check-csp.mjs"
+    "check:csp": "node scripts/check-csp.mjs",
+    "preview": "pnpm build && pnpm check:csp && pnpm dlx wrangler@4 versions upload"
   },
   "dependencies": {
     "@a.incantalupo/design-tokens": "^0.1.0",
