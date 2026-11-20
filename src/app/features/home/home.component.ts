@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +12,7 @@ import { EventCardComponent } from '../../shared/components/event-card/event-car
 
 @Component({
     selector: 'app-home',
-    imports: [CommonModule, RouterModule, EventCardComponent],
+    imports: [RouterModule, EventCardComponent],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.less'],
     host: {

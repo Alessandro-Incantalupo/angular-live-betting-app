@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +12,7 @@ import { EventsStore } from '../core/state/events.store';
 
 @Component({
     selector: 'app-layout',
-    imports: [RouterOutlet, RouterLink, CommonModule, SlugifyPipe],
+    imports: [RouterOutlet, RouterLink, SlugifyPipe],
     templateUrl: './layout.component.html',
     styleUrls: ['./layout.component.less'],
     host: {
