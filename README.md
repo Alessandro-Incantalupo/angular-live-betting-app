@@ -45,7 +45,13 @@ Tests run on Vitest through Angular's unit-test builder: the simulator, the inte
 
 ## Deploy
 
-`netlify.toml` publishes `dist/live-odds/browser` with a fallback to `index.html` for every route, a Content Security Policy, and year-long caching for the hashed bundles. The one inline script (it applies a saved theme before first paint) is allowed by its hash; `pnpm check:csp` fails if the script and the hash drift apart.
+The demo runs on Cloudflare Workers as an assets-only Worker: no server code, just the files in `dist/live-odds/browser`. `wrangler.jsonc` sends unknown paths to `index.html` (`not_found_handling: "single-page-application"`), so the Angular router handles every route. `public/_headers`, copied into the build, sets a Content Security Policy, the usual security headers and year-long caching for the hashed bundles. The one inline script (it applies a saved theme before first paint) is allowed by its hash; `pnpm check:csp` fails if the script and the hash drift apart.
+
+```sh
+pnpm preview        # build, check the CSP, upload a version and print its preview URL
+```
+
+Publishing that version is a separate step (`wrangler versions deploy`, or `wrangler deploy`).
 
 ## Licence
 
