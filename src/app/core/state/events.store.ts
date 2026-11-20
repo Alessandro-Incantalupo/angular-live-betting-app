@@ -1,7 +1,7 @@
-import { updateState } from '@angular-architects/ngrx-toolkit';
 import { computed, inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import {
+  patchState,
   signalStore,
   withComputed,
   withHooks,
@@ -20,8 +20,6 @@ import {
   withEventsCallState,
 } from './features/withEventsCallState';
 
-import { withDevtools } from '@angular-architects/ngrx-toolkit';
-
 interface EventsState {
   events: SportEvent[];
   selectedSport: string | null;
@@ -36,7 +34,6 @@ const initialState: EventsState = {
 
 export const EventsStore = signalStore(
   { providedIn: 'root' },
-  withDevtools('EventsStore'),
   withState(initialState),
   withEventsCallState(),
   withComputed((state) => ({
@@ -73,7 +70,7 @@ export const EventsStore = signalStore(
     }>(
       pipe(
         tap(({ sport, category }) => {
-          updateState(state, 'Filter: Sync Routes', {
+          patchState(state, {
             selectedSport: sport ?? null,
             selectedCategory: category ?? null,
           });
@@ -85,28 +82,20 @@ export const EventsStore = signalStore(
       pipe(
         tap(() => {
           if (state.events().length === 0) {
-            updateState(state, 'Events: Loading', setEventsLoading());
+            patchState(state, setEventsLoading());
           }
         }),
         switchMap(() => {
           return eventsService.getEvents().pipe(
             tapResponse({
               next: (events) => {
-                const isPolling = state.events().length > 0;
-
-                updateState(
-                  state,
-                  isPolling ? 'Events: Polled Success' : 'Events: Load Success',
-                  { events },
+                patchState(state, { events },
                   setEventsLoaded(),
                 );
               },
               error: (err: { message?: string }) => {
                 console.error('Failed to load events', err);
-                updateState(
-                  state,
-                  'Events: Load Error',
-                  setEventsError('Failed to load events'),
+                patchState(state, setEventsError('Failed to load events'),
                 );
               },
             }),

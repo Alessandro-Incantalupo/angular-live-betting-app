@@ -1,21 +1,28 @@
-import {
-  setError,
-  setLoaded,
-  setLoading,
-  withCallState,
-} from '@angular-architects/ngrx-toolkit';
-import { signalStoreFeature } from '@ngrx/signals';
+import { computed } from '@angular/core';
+import { signalStoreFeature, withComputed, withState } from '@ngrx/signals';
+
+export type CallState = 'init' | 'loading' | 'loaded' | { error: string };
 
 export function withEventsCallState() {
-  return signalStoreFeature(withCallState({ collection: 'events' }));
+  return signalStoreFeature(
+    withState<{ eventsCallState: CallState }>({ eventsCallState: 'init' }),
+    withComputed(({ eventsCallState }) => ({
+      eventsLoading: computed(() => eventsCallState() === 'loading'),
+      eventsLoaded: computed(() => eventsCallState() === 'loaded'),
+      eventsError: computed(() => {
+        const state = eventsCallState();
+        return typeof state === 'object' ? state.error : null;
+      }),
+    })),
+  );
 }
 
 export function setEventsLoading() {
-  return setLoading('events');
+  return { eventsCallState: 'loading' as CallState };
 }
 export function setEventsLoaded() {
-  return setLoaded('events');
+  return { eventsCallState: 'loaded' as CallState };
 }
 export function setEventsError(error: string) {
-  return setError(error, 'events');
+  return { eventsCallState: { error } as CallState };
 }
