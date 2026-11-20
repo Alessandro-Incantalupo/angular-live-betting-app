@@ -2,7 +2,7 @@
 
 Sports odds that change every few seconds, built with current Angular: zoneless change detection, signals end to end and an NgRx Signal Store that polls an API. The API is a mock that runs in the browser, so the whole thing deploys as static files.
 
-**Demo:** DEMO_URL (prices are simulated; there are no real events and no bets)
+**Demo:** <https://live-odds-angular-demo.netlify.app> (prices are simulated; there are no real events and no bets)
 
 ## What it shows
 
