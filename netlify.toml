@@ -24,12 +24,7 @@
     Cross-Origin-Opener-Policy = "same-origin"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains"
 
-# The page itself is checked on every visit, so a new deploy shows up at once.
-[[headers]]
-  for = "/index.html"
-  [headers.values]
-    Cache-Control = "no-cache"
-
+# HTML keeps Netlify's default (revalidate on every visit), so a new deploy shows up at once.
 # Bundles have a content hash in their name: a new build gets new names, so keep them for a year.
 [[headers]]
   for = "/*.js"
