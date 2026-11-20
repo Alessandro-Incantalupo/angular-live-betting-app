@@ -40,6 +40,18 @@ export default class EventDetail {
     return event ? SELECTIONS.filter((s) => event.odds[s] !== null) : [];
   });
 
+  /** Each outcome's current price and its last move. */
+  protected readonly prices = computed(() => {
+    const event = this.event();
+    if (!event) return [];
+    const moves = this.store.moves()[event.id];
+    return this.selections().map((selection) => ({
+      selection,
+      value: event.odds[selection]!,
+      move: moves?.[selection],
+    }));
+  });
+
   protected readonly code = (s: Selection) => SELECTION_CODE[s];
   protected readonly label = (s: Selection) => {
     const event = this.event();

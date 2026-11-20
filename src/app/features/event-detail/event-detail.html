@@ -11,64 +11,76 @@
     </ol>
   </nav>
 
-  <h1 tabindex="-1">{{ name() }}</h1>
+  <article class="event">
+    <!-- Dark in both themes, like the top bar. The pills repeat the breadcrumb: hidden from screen readers. -->
+    <header class="band" data-theme="dark">
+      <p class="pills" aria-hidden="true">
+        <span class="pill sport">{{ event.sport }}</span>
+        <span class="pill category">{{ event.category }}</span>
+      </p>
+      <h1 tabindex="-1">{{ name() }}</h1>
+    </header>
 
-  <section aria-labelledby="odds-heading">
-    <h2 id="odds-heading">Match odds</h2>
-    <dl class="prices">
-      @for (selection of selections(); track selection) {
-        <div class="price">
-          <dt>
-            {{ label(selection) }} <span class="code">({{ code(selection) }})</span>
-          </dt>
-          <dd>
-            <app-odds-value
-              [value]="event.odds[selection]!"
-              [move]="store.moves()[event.id]?.[selection]"
-            />
-          </dd>
-        </div>
-      }
-    </dl>
-  </section>
+    <section aria-labelledby="odds-heading">
+      <h2 id="odds-heading">Match odds</h2>
+      <p class="hint">Prices move every few seconds. The arrow shows the last move.</p>
+      <dl class="prices">
+        <!-- Tracked by value too: a new price is a new box, so the flash plays once per move. -->
+        @for (price of prices(); track price.selection + price.value) {
+          <div
+            class="price"
+            [class.price-up]="price.move === 'up'"
+            [class.price-down]="price.move === 'down'"
+          >
+            <dt>
+              {{ label(price.selection) }} <span class="code">({{ code(price.selection) }})</span>
+            </dt>
+            <dd>
+              <app-odds-value [value]="price.value" [move]="price.move" />
+            </dd>
+          </div>
+        }
+      </dl>
+    </section>
 
-  <section aria-labelledby="history-heading">
-    <h2 id="history-heading">Recent movement</h2>
-    @if (history().length > 1) {
-      <div class="table-wrap">
-        <table>
-          <caption class="visually-hidden">
-            Prices at each change since you opened the page, newest first.
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">Time</th>
-              @for (selection of selections(); track selection) {
-                <th scope="col">
-                  <span aria-hidden="true">{{ code(selection) }}</span>
-                  <span class="visually-hidden">{{ label(selection) }}</span>
-                </th>
-              }
-            </tr>
-          </thead>
-          <tbody>
-            @for (point of history(); track point.at) {
+    <section aria-labelledby="history-heading">
+      <h2 id="history-heading">Recent movement</h2>
+      @if (history().length > 1) {
+        <div class="table-wrap">
+          <table>
+            <caption class="visually-hidden">
+              Prices at each change since you opened the page, newest first.
+            </caption>
+            <thead>
               <tr>
-                <th scope="row">
-                  <time [attr.datetime]="point.at">{{ point.at | date: 'HH:mm:ss' }}</time>
-                </th>
+                <th scope="col">Time</th>
                 @for (selection of selections(); track selection) {
-                  <td>{{ point.odds[selection]?.toFixed(2) }}</td>
+                  <th scope="col">
+                    <span aria-hidden="true">{{ code(selection) }}</span>
+                    <span class="visually-hidden">{{ label(selection) }}</span>
+                  </th>
                 }
               </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-    } @else {
-      <p class="muted">No changes yet. Prices that move will be listed here.</p>
-    }
-  </section>
+            </thead>
+            <tbody>
+              @for (point of history(); track point.at) {
+                <tr>
+                  <th scope="row">
+                    <time [attr.datetime]="point.at">{{ point.at | date: 'HH:mm:ss' }}</time>
+                  </th>
+                  @for (selection of selections(); track selection) {
+                    <td>{{ point.odds[selection]?.toFixed(2) }}</td>
+                  }
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <p class="muted">No changes yet. Prices that move will be listed here.</p>
+      }
+    </section>
+  </article>
 } @else if (store.isLoading() || store.requestStatus() === 'idle') {
   <h1 tabindex="-1">Loading the event…</h1>
 } @else if (store.error() && store.entities().length === 0) {

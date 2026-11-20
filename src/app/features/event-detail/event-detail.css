@@ -1,6 +1,6 @@
 :host {
   display: block;
-  max-width: 48rem;
+  max-width: 56rem;
 }
 
 .crumbs ol {
@@ -31,31 +31,88 @@ h1 {
   line-height: var(--type-leading-tight);
 }
 
-h2 {
-  margin: var(--space-8) 0 var(--space-3);
-  font-size: var(--type-xl);
+/* One raised card: a dark banner with the match, then the odds and their movement. */
+.event {
+  overflow: hidden;
+  background: var(--surface-raised);
+  border: 1px solid transparent;
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
 }
 
+.band {
+  padding: var(--space-6) var(--space-4);
+  background: var(--surface);
+  color: var(--text);
+}
+.band .pills {
+  margin-bottom: var(--space-3);
+}
+.band h1 {
+  margin: 0;
+}
+
+section {
+  padding: var(--space-6) var(--space-4);
+}
+section + section {
+  border-top: 1px solid var(--border);
+}
+
+h2 {
+  margin: 0 0 var(--space-1);
+  font-size: var(--type-xl);
+}
+.hint {
+  margin: 0 0 var(--space-4);
+  color: var(--text-muted);
+}
+
+/* On a phone the outcomes stack, name left and price right; wider, they sit side by side. */
 .prices {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
   gap: var(--space-3);
   margin: 0;
 }
 .price {
-  padding: var(--space-4);
-  background: var(--surface-raised);
-  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+  border: 2px solid var(--border);
   border-radius: var(--card-radius);
-  box-shadow: var(--card-shadow);
 }
 .price dt {
   color: var(--text-muted);
+  font-weight: 600;
 }
 .price dd {
-  margin: var(--space-1) 0 0;
+  margin: 0;
   font-size: var(--type-2xl);
 }
+
+@media (min-width: 40rem) {
+  .band,
+  section {
+    padding-inline: var(--space-6);
+  }
+  .prices {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+  }
+  .price {
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space-5) var(--space-4);
+    text-align: center;
+  }
+  .price dd {
+    font-size: var(--type-3xl);
+  }
+}
+
 .code {
   white-space: nowrap;
 }
