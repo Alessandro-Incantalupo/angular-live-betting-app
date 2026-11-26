@@ -1,4 +1,4 @@
-import { DOCUMENT, Injectable, computed, effect, inject, signal } from '@angular/core';
+import { DOCUMENT, computed, effect, inject, signal, Service } from '@angular/core';
 import { readPreference, writePreference } from './preferences';
 
 export type Theme = 'light' | 'dark';
@@ -10,7 +10,7 @@ const STORAGE_KEY = 'theme';
  * Light or dark, through `data-theme` on <html>. With no saved choice, the page follows the
  * system setting and the attribute stays off, so the tokens' own media query applies.
  */
-@Injectable({ providedIn: 'root' })
+@Service()
 export class ThemeService {
   private readonly document = inject(DOCUMENT);
   private readonly storage = this.document.defaultView?.localStorage;

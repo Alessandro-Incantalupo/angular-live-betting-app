@@ -1,4 +1,4 @@
-import { DOCUMENT, Injectable, effect, inject, signal, untracked } from '@angular/core';
+import { DOCUMENT, effect, inject, signal, untracked, Service } from '@angular/core';
 import { EventsStore } from '../state/events.store';
 import { readPreference, writePreference } from '../platform/preferences';
 import { OddsAnnouncer } from './odds-announcer';
@@ -10,7 +10,7 @@ const STORAGE_KEY = 'announce-odds';
  * talks every few seconds is hard to use. When on, it speaks at most every 20 seconds, only
  * about the events on screen, and through a polite live region, so it never interrupts.
  */
-@Injectable({ providedIn: 'root' })
+@Service()
 export class OddsAnnouncements {
   private readonly store = inject(EventsStore);
   private readonly storage = inject(DOCUMENT).defaultView?.localStorage;
